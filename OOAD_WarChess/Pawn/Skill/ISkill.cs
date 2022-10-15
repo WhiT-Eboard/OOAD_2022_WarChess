@@ -4,9 +4,16 @@ public interface ISkill
 {
     public SkillTarget Target { get; set; }
     public SkillType Type { get; set; }
-    
+
+    public Pawn Initiator { get; set; }
     public Predicate<Pawn> Condition { get; set; }
+    public Func<string> Description { get; set; }
+    public Func<string> FullDescription { get; set; }
     public int Range { get; set; }
+    public int Cooldown { get; set; }
+    public int CastTime { get; set; }
+    public List<SkillEffect> Effects { get; set; }
+
     public void Use();
 }
 

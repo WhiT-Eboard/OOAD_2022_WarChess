@@ -9,7 +9,6 @@
 
     <ItemGroup>
       <Folder Include="Battle" />
-      <Folder Include="Localization\Pawn" />
     </ItemGroup>
 
 </Project>
