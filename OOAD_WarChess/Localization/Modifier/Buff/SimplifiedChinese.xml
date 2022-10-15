@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SimplifiedChinese>
     <AlwaysCritic>
-        <text>必定暴击</text>
+        <text>必定暴击,持续{0}回合</text>
     </AlwaysCritic>
 </SimplifiedChinese>
