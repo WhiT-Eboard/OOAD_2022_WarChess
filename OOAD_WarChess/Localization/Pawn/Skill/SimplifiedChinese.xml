@@ -10,6 +10,6 @@
         <text>给予{0}</text>
     </Skill_Effect_ApplyEffect>
     <Skill_Full_Description>
-        <text>技能描述:\n{0}\n效果:{1}\n目标:{2}\n引导:{3}\n冷却:{4}\n</text>
+        <text>技能描述:\n{0}\n效果:{1}\n目标:{2}\n范围:{3}\n引导:{4}\n冷却:{5}\n</text>
     </Skill_Full_Description>
 </SimplifiedChinese>

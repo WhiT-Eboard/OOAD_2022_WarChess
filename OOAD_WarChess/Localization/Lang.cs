@@ -5,14 +5,14 @@ namespace OOAD_WarChess.Localization;
 public class Lang
 {
     // Singleton
-    private static Lang _Instance { get; } = new Lang();
+    private static Lang _Instance { get; } = new();
 
     public Language Language { get; set; } = Language.SimplifiedChinese;
 
     public static Lang Text => _Instance;
 
-    private Dictionary<string, string> CorpusSimplifiedChinese { get; } = new Dictionary<string, string>();
-    private Dictionary<string, string> CorpusEnglish { get; } = new Dictionary<string, string>();
+    private Dictionary<string, string> CorpusSimplifiedChinese { get; } = new();
+    private Dictionary<string, string> CorpusEnglish { get; } = new();
 
 
     public string this[string key]
@@ -27,7 +27,7 @@ public class Lang
                 Language.English => CorpusEnglish.ContainsKey(key)
                     ? CorpusEnglish[key]
                     : $"`{key}` NOT FOUND IN ENGLISH LANGUAGE SET",
-                _ => $"LANGUAGE SET NOT FOUND"
+                _ => $"`{Language}` LANGUAGE SET NOT FOUND"
             };
         }
     }
@@ -73,6 +73,7 @@ public class Lang
         var langDictInfo = new DirectoryInfo(@"../../../Localization/");
         RecursiveTransverse(langDictInfo, Language.SimplifiedChinese);
         RecursiveTransverse(langDictInfo, Language.English);
+        // If need to add more language, change here. Though not likely.
     }
 
     private Dictionary<string, string> SelectLang(Language l)

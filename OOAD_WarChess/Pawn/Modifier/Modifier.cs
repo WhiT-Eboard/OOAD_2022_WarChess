@@ -4,14 +4,15 @@ public class Modifier : IModifier
 {
     public Func<int, int> Apply { get; set; }
     public PawnAttribute Target { get; set; }
-    
+
     public string Name { get; set; }
     public Func<string> Description { get; set; }
-    
+
     public Pawn Giver { get; set; }
     public int ID { get; set; }
+    public bool Hidden { get; set; } = false;
 
-    protected Modifier(Pawn giver,int id)
+    protected Modifier(Pawn giver, int id)
     {
         Giver = giver;
         ID = id;

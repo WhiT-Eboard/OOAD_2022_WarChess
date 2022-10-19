@@ -32,7 +32,7 @@ public struct Pawn
 
     private int _CRIT => DEX * 2; // Critical Hit
 
-    private int _SHIELD => _STR * 2 + _INT * 2; // Shield
+    private int _SHIELD => _STR * 2 + _INT * 2; // Shield, Maybe it should be given by the armor?
 
     private int _MAXBURDEN => 50 + STR * 10;
 
@@ -44,9 +44,9 @@ public struct Pawn
     public List<IItem> Items { get; set; }
 
     public int EXP { get; set; } = 0;
-    
+
     public int LVL => EXP / 1000; //TODO Change the formula
-    
+
     public Pawn(int str, int dex, int intel, int con)
     {
         _STR = str;
@@ -56,9 +56,9 @@ public struct Pawn
         Modifiers = new List<IModifier>();
         Items = new List<IItem>();
     }
-    
 
-        public int GetAttribute(PawnAttribute attribute)
+
+    public int GetAttribute(PawnAttribute attribute)
     {
         return attribute switch
         {
@@ -89,7 +89,7 @@ public struct Pawn
         return Modifiers.Where(x => x.Target == attribute)
             .Aggregate(value, (current, modifier) => modifier.Apply(current));
     }
-    
+
     public int STR => GetModifiedAttribute(PawnAttribute.STR);
     public int DEX => GetModifiedAttribute(PawnAttribute.DEX);
     public int INT => GetModifiedAttribute(PawnAttribute.INT);
@@ -106,7 +106,6 @@ public struct Pawn
     public int CRIT => GetModifiedAttribute(PawnAttribute.CRIT);
     public int SHIELD => GetModifiedAttribute(PawnAttribute.SHIELD);
     public int MAX_BURDEN => GetModifiedAttribute(PawnAttribute.MAX_BURDEN);
-    
 }
 
 public enum PawnAttribute

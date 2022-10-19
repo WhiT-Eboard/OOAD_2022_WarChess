@@ -3,4 +3,7 @@
     <Injury>
         <text>Injury</text>
     </Injury>
+    <Heal>
+        <text>Heal</text>
+    </Heal>
 </English>

@@ -12,7 +12,7 @@ public interface ISkill
     public int Range { get; set; }
     public int Cooldown { get; set; }
     public int CastTime { get; set; }
-    public List<SkillEffect> Effects { get; set; }
+    public List<SkillEffectType> Effects { get; set; }
 
     public void Use();
 }
@@ -40,7 +40,7 @@ public enum SkillType
     Heal
 }
 
-public enum SkillEffect
+public enum SkillEffectType
 {
     DealDamage,
     Heal,

@@ -1,4 +1,4 @@
-namespace OOAD_WarChess.Pawn.Skill.Mage;
+namespace OOAD_WarChess.Pawn.Skill.Magic;
 
 public class Fireball: Skill
 {

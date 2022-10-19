@@ -10,4 +10,6 @@ public interface IModifier
 
     public Pawn Giver { get; set; }
     public int ID { get; set; } // ID is to identify the one single specific buff/debuff, used when remove
+
+    public bool Hidden { get; set; }
 }

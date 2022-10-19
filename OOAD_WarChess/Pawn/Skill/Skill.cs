@@ -15,13 +15,18 @@ public class Skill : ISkill
     public int Range { get; set; }
     public int Cooldown { get; set; }
     public int CastTime { get; set; }
-    public List<SkillEffect> Effects { get; set; }
+    public List<SkillEffectType> Effects { get; set; }
 
     public Skill(Pawn initiator)
     {
         Initiator = initiator;
-        FullDescription = () =>
-            string.Format(Lang.Text["Skill_Full_Description"], Description(), Range, CastTime, Cooldown);
+        //FullDescription = () =>
+          //  string.Format(Lang.Text["Skill_Full_Description"], Description(),, Range, CastTime, Cooldown);
+    }
+    
+    public string GetEffectDescription()
+    {
+        throw new NotImplementedException();
     }
 
     public virtual void Use()
@@ -32,4 +37,16 @@ public class Skill : ISkill
 public class SkillEffectImpl
 {
     public Func<int, Pawn, int, IModifier> DealDamage = (val, giver, id) => new Injury(val, giver, id);
+    
+    
+    public static string GetEffectDescription(SkillEffectType effectType)
+    {
+        return effectType switch
+        {
+            SkillEffectType.DealDamage => Lang.Text["Skill_Effect_DealDamage"],
+            SkillEffectType.Heal => Lang.Text["Skill_Effect_Heal"],
+            SkillEffectType.ApplyEffect => Lang.Text["Skill_Effect_ApplyEffect"],
+            _ => throw new ArgumentOutOfRangeException(nameof(effectType), effectType, null)
+        };
+    }
 }
