@@ -8,7 +8,7 @@ public class Map
 
     public List<Tile> BattleMap { get; set; }
 
-    public Environment.Environment Environment { get; set; }
+    public Environment.IEnvironment Environment { get; set; }
 
     public Map(int size)
     {

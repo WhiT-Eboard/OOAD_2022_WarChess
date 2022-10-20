@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <English>
-    <Injury>
+    <Modifier_Common_Injury>
         <text>Injury</text>
-    </Injury>
-    <Heal>
+    </Modifier_Common_Injury>
+    <Modifier_Common_Heal>
         <text>Heal</text>
-    </Heal>
+    </Modifier_Common_Heal>
 </English>

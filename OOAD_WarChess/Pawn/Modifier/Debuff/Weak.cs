@@ -9,6 +9,6 @@ public class Weak:Modifier
     {
         Apply = x=> x - value;
         Target = PawnAttribute.STR;
-        Description =() => $"{Lang.Text["Weak"]}:-{value} STR";
+        Description =() => $"{Lang.Text["Modifier_Debuff_Weak"]}:-{value} STR";
     }
 }

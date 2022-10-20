@@ -2,16 +2,11 @@ using OOAD_WarChess.Pawn.Modifier;
 
 namespace OOAD_WarChess.Battle.Terran;
 
-public class Terran
+public interface ITerran
 {
     public TerranType Type { get; set; }
 
-    private Pawn.Pawn _pawn { get; set; } = new(0, 0, 0, 0);
-
-    public Terran(TerranType type)
-    {
-        Type = type;
-    }
+    public Pawn.Pawn _pawn { get; set; }
 
     public IModifier GetModifier()
     {

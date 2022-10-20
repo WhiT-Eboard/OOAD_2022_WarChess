@@ -9,7 +9,7 @@ public class Heal : Modifier, IAggregate
         Value = value;
         Apply = x => x + Value;
         Target = PawnAttribute.HP;
-        Description = () => $"{Lang.Text["Heal"]}:+{Value} HP";
+        Description = () => $"{Lang.Text["Modifier_Common_Heal"]}:+{Value} HP";
         Hidden = true;
     }
 

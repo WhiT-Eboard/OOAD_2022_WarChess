@@ -1,8 +1,12 @@
 namespace OOAD_WarChess.Pawn.Modifier;
 
-public class Modifier : IModifier
+public abstract class Modifier : IModifier
 {
     public Func<int, int> Apply { get; set; }
+
+    public ModifierType Type { get; set; } = ModifierType.Default;
+
+    public int Duration { get; set; }
     public PawnAttribute Target { get; set; }
 
     public string Name { get; set; }

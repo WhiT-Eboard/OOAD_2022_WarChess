@@ -57,6 +57,22 @@ public struct Pawn
         Items = new List<IItem>();
     }
 
+    public void UpdateModifiers()
+    {
+        for (var i = 0; i < Modifiers.Count; i++)
+        {
+            var modifier = Modifiers[i];
+            if (modifier.Type==ModifierType.Temporary && modifier.Duration <= 0)
+            {
+                Modifiers.Remove(modifier);
+                i--;
+            }
+            else
+            {
+                modifier.Duration--;
+            }
+        }
+    }
 
     public int GetAttribute(PawnAttribute attribute)
     {

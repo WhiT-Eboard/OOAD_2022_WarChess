@@ -1,44 +1,54 @@
+using OOAD_WarChess.Battle;
 using OOAD_WarChess.Localization;
 using OOAD_WarChess.Pawn.Modifier;
 using OOAD_WarChess.Pawn.Modifier.Common;
 
 namespace OOAD_WarChess.Pawn.Skill;
 
-public class Skill : ISkill
+public abstract class Skill : ISkill
 {
-    public SkillTarget Target { get; set; }
+    public SkillTarget TargetType { get; set; }
     public SkillType Type { get; set; }
     public Pawn Initiator { get; set; }
-    public Predicate<Pawn> Condition { get; set; }
+    public List<Pawn> Target { get; set; }
+    public DamageType DamageType { get; set; }
+    public Predicate<Global> Available { get; set; }
     public Func<string> Description { get; set; }
     public Func<string> FullDescription { get; set; }
     public int Range { get; set; }
     public int Cooldown { get; set; }
     public int CastTime { get; set; }
     public List<SkillEffectType> Effects { get; set; }
+    
+    public readonly List<SkillTarget> SingleTarget = 
+        new List<SkillTarget> { SkillTarget.Self, SkillTarget.SingleAlly, SkillTarget.SingleEnemy };
+    
+    public readonly List<SkillTarget> MultiTargets = 
+        new List<SkillTarget> { SkillTarget.AllAllies, SkillTarget.AllEnemies, SkillTarget.AllTargets };
 
     public Skill(Pawn initiator)
     {
         Initiator = initiator;
         //FullDescription = () =>
-          //  string.Format(Lang.Text["Skill_Full_Description"], Description(),, Range, CastTime, Cooldown);
+        //  string.Format(Lang.Text["Skill_Full_Description"], Description(),, Range, CastTime, Cooldown);
     }
-    
+
     public string GetEffectDescription()
     {
         throw new NotImplementedException();
     }
 
-    public virtual void Use()
+    public virtual void Cast()
     {
+        
     }
 }
 
 public class SkillEffectImpl
 {
     public Func<int, Pawn, int, IModifier> DealDamage = (val, giver, id) => new Injury(val, giver, id);
-    
-    
+
+
     public static string GetEffectDescription(SkillEffectType effectType)
     {
         return effectType switch

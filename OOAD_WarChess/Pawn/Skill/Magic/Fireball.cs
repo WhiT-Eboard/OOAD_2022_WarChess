@@ -4,7 +4,7 @@ public class Fireball: Skill
 {
     public Fireball(Pawn initiator) : base(initiator)
     {
-        Target = SkillTarget.SingleEnemy;
+        TargetType = SkillTarget.SingleEnemy;
         Range = 3;
         Cooldown = 2;
         CastTime = 0;

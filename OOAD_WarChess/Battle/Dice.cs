@@ -4,12 +4,22 @@ public static class Dice
 {
     private static Random _random = new(new Guid().GetHashCode());
 
-    public static Func<int> D6 = () => Roll(6);
+    public static Func<int,int> D6 = (x) => Roll(6,x);
     
-    public static Func<int> D20 = () => Roll(20);
+    public static Func<int,int> D20 = (x) => Roll(20,x);
 
-    public static Func<int> D100 = () => Roll(100);
+    public static Func<int,int> D100 = (x) => Roll(100,x);
 
+    public static Func<int, int> Roll(DiceType type)
+    {
+        return type switch
+        {
+            DiceType.Six => D6,
+            DiceType.Twenty => D20,
+            DiceType.Hundred => D100,
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+        };
+    }
 
     public static int Roll(int sides)
     {

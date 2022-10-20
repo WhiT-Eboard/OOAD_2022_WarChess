@@ -23,20 +23,20 @@ public class Lang
             {
                 Language.SimplifiedChinese => CorpusSimplifiedChinese.ContainsKey(key)
                     ? CorpusSimplifiedChinese[key]
-                    : $"`{key}` NOT FOUND IN SIMPLIFIED CHINESE LANGUAGE SET",
+                    : key,
                 Language.English => CorpusEnglish.ContainsKey(key)
                     ? CorpusEnglish[key]
-                    : $"`{key}` NOT FOUND IN ENGLISH LANGUAGE SET",
+                    : key,
                 _ => $"`{Language}` LANGUAGE SET NOT FOUND"
             };
         }
     }
 
-    private bool RecursiveTransverse(DirectoryInfo info, Language l)
+    private bool GenerateCorpus(DirectoryInfo info, Language l)
     {
         if (info.GetDirectories().Length != 0)
         {
-            info.GetDirectories().All(e => RecursiveTransverse(e, l));
+            info.GetDirectories().All(e => GenerateCorpus(e, l));
         }
 
         var xmlFiles = info.GetFiles($"{l.ToString()}.xml");
@@ -71,8 +71,8 @@ public class Lang
     private Lang()
     {
         var langDictInfo = new DirectoryInfo(@"../../../Localization/");
-        RecursiveTransverse(langDictInfo, Language.SimplifiedChinese);
-        RecursiveTransverse(langDictInfo, Language.English);
+        GenerateCorpus(langDictInfo, Language.SimplifiedChinese);
+        GenerateCorpus(langDictInfo, Language.English);
         // If need to add more language, change here. Though not likely.
     }
 
