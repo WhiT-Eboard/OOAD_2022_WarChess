@@ -20,11 +20,6 @@ public abstract class Skill : ISkill
     public int CastTime { get; set; }
     public List<SkillEffectType> Effects { get; set; }
     
-    public readonly List<SkillTarget> SingleTarget = 
-        new List<SkillTarget> { SkillTarget.Self, SkillTarget.SingleAlly, SkillTarget.SingleEnemy };
-    
-    public readonly List<SkillTarget> MultiTargets = 
-        new List<SkillTarget> { SkillTarget.AllAllies, SkillTarget.AllEnemies, SkillTarget.AllTargets };
 
     public Skill(Pawn initiator)
     {

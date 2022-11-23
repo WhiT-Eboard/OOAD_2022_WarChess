@@ -9,6 +9,11 @@ public class Map
     public List<Tile> BattleMap { get; set; }
 
     public Environment.IEnvironment Environment { get; set; }
+    
+    public Tile At(int x, int y)
+    {
+        return BattleMap[x * Size + y];
+    }
 
     public Map(int size)
     {

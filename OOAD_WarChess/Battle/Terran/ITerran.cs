@@ -6,6 +6,20 @@ public interface ITerran
 {
     public TerranType Type { get; set; }
 
+    public int MoveDifficulty
+    {
+        get
+        {
+            return Type switch
+            {
+                TerranType.Plain => 1,
+                TerranType.Forest => 2,
+                TerranType.Mountain => 3,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
+    }
+
     public Pawn.Pawn _pawn { get; set; }
 
     public IModifier GetModifier()

@@ -6,4 +6,14 @@ public static class RuleSet
     {
         return Dice.D6(attacker.ACC) > Dice.D6(defender.DOGE);
     }
+    
+    public static bool IsCriticalHit(Pawn.Pawn attacker)
+    {
+        return Dice.D100(1) <= attacker.CRIT;
+    }
+    
+    public static double CriticalDamageMultiplier(Pawn.Pawn attacker)
+    {
+        return 1.5;
+    }
 }

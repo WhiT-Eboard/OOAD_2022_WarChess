@@ -57,12 +57,14 @@ public struct Pawn
         Items = new List<IItem>();
     }
 
+    public int Id { get; set; } = new Guid().GetHashCode();
+
     public void UpdateModifiers()
     {
         for (var i = 0; i < Modifiers.Count; i++)
         {
             var modifier = Modifiers[i];
-            if (modifier.Type==ModifierType.Temporary && modifier.Duration <= 0)
+            if (modifier.Type == ModifierType.Temporary && modifier.Duration <= 0)
             {
                 Modifiers.Remove(modifier);
                 i--;
@@ -122,6 +124,16 @@ public struct Pawn
     public int CRIT => GetModifiedAttribute(PawnAttribute.CRIT);
     public int SHIELD => GetModifiedAttribute(PawnAttribute.SHIELD);
     public int MAX_BURDEN => GetModifiedAttribute(PawnAttribute.MAX_BURDEN);
+
+    public static bool operator ==(Pawn left, Pawn right)
+    {
+        return left.Id == right.Id;
+    }
+
+    public static bool operator !=(Pawn left, Pawn right)
+    {
+        return left.Id != right.Id;
+    }
 }
 
 public enum PawnAttribute

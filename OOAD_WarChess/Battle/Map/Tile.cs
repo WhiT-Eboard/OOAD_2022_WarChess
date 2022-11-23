@@ -4,9 +4,10 @@ namespace OOAD_WarChess.Battle.Map;
 
 public class Tile
 {
+    public static readonly Pawn.Pawn DefaultPawn = new();
     public TerranType Terran { get; set; }
-    
-    public Pawn.Pawn Pawn { get; set; }
+
+    public Pawn.Pawn Unit { get; set; } = DefaultPawn;
     
     public Tile(TerranType terran)
     {
