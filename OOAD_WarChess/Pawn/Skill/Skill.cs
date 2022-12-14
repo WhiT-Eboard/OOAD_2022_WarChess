@@ -11,17 +11,17 @@ public abstract class Skill : ISkill
     public string Name { get; set; }
     public Pawn Initiator { get; set; }
     public List<Pawn> Target { get; set; }
-    public DamageType DamageType { get; set; }
-    public int Damage { get; set; } 
+    public DamageType DamageType { get; set; }=DamageType.Physical;
+    public int Damage { get; set; } = 0;
     public Func<string> Description { get; set; }
     public Func<string> FullDescription { get; set; }
-    public int Range { get; set; }
-    public int Cooldown { get; set; }
-    public int CastTime { get; set; }
-    public int APCost { get; set; }
-    public int MPCost { get; set; }
-    public List<IModifier> Effects { get; set; }
-    public List<(int, int)> EffectArea { get; set; }
+    public int Range { get; set; } = 0;
+    public int Cooldown { get; set; } = 0;
+    public int CastTime { get; set; } = 0;
+    public int APCost { get; set; } = 0;
+    public int MPCost { get; set; } = 0;
+    public List<IModifier> Effects { get; set; } = new();
+    public List<(int, int)> EffectArea { get; set; } = new();
 
 
     public Skill(Pawn initiator)
@@ -42,4 +42,3 @@ public abstract class Skill : ISkill
         throw new NotImplementedException();
     }
 }
-

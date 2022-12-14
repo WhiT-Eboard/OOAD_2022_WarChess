@@ -17,25 +17,34 @@ public class SettleAction
         damageModifier = RuleSet.IsCriticalHit(initiator) ? RuleSet.CriticalDamageMultiplier() : 1;
         var rawDamage = skill.DamageType switch
         {
-            DamageType.Physical => RuleSet.DealPhysicalDamage(target,
+            DamageType.Physical => RuleSet.DefendPhysicalDamage(target,
                 RuleSet.DealPhysicalDamage(initiator, skill.Damage)),
-            DamageType.Pure => RuleSet.DealTureDamage(target,
+            DamageType.Pure => RuleSet.DefendTrueDamage(target,
                 RuleSet.DealTureDamage(initiator, skill.Damage)),
             _ => RuleSet.DefendMagicalDamage(target,
                 RuleSet.DealMagicalDamage(initiator, skill.Damage))
         };
 
         var damage = new Injury(damageModifier * rawDamage, initiator, 0);
-        var exhaust = new Exhaust(skill.APCost, initiator, 0);
-        var deplete = new Deplete(skill.MPCost, initiator, 0);
+
         SettleModifier(target, damage);
         foreach (var modifier in skill.Effects)
         {
             SettleModifier(target, modifier.Clone());
         }
 
-        SettleModifier(initiator, exhaust);
-        SettleModifier(initiator, deplete);
+        if (skill.APCost != 0)
+        {
+            var exhaust = new Exhaust(skill.APCost, initiator, 0);
+            SettleModifier(initiator, exhaust);
+        }
+
+        if (skill.MPCost != 0)
+        {
+            var deplete = new Deplete(skill.MPCost, initiator, 0);
+            SettleModifier(initiator, deplete);
+        }
+
         var result = Tuple.Create<int, string>(rawDamage, "Fireball");
         _combatTracker.LogSkill(initiator.Name, target.Name, skill.Name, result);
         return result;
