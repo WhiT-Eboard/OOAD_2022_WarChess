@@ -45,5 +45,6 @@ public enum DamageType
     Thunder,
     Water,
     Arcane,
+    Physical,
     Pure
 }

@@ -15,7 +15,17 @@ public class SettleAction
         var damageModifier = 0;
         if (!RuleSet.IsHit(initiator, target)) return Tuple.Create(0, "Miss");
         damageModifier = RuleSet.IsCriticalHit(initiator) ? RuleSet.CriticalDamageMultiplier() : 1;
-        var damage = new Injury(damageModifier * skill.Damage, initiator, 0);
+        var rawDamage = skill.DamageType switch
+        {
+            DamageType.Physical => RuleSet.DealPhysicalDamage(target,
+                RuleSet.DealPhysicalDamage(initiator, skill.Damage)),
+            DamageType.Pure => RuleSet.DealTureDamage(target, 
+                RuleSet.DealTureDamage(initiator, skill.Damage)),
+            _ => RuleSet.DefendMagicalDamage(target, 
+                RuleSet.DealMagicalDamage(initiator, skill.Damage))
+        };
+
+        var damage = new Injury(damageModifier * rawDamage, initiator, 0);
         var exhaust = new Exhaust(skill.APCost, initiator, 0);
         SettleModifier(target, damage);
         foreach (var modifier in skill.Effects)
@@ -24,7 +34,7 @@ public class SettleAction
         }
 
         SettleModifier(initiator, exhaust);
-        var result = Tuple.Create<int, string>(damageModifier * skill.Damage, "Fireball");
+        var result = Tuple.Create<int, string>(rawDamage, "Fireball");
         _combatTracker.LogSkill(initiator.Name, target.Name, skill.Name, result);
         return result;
     }
@@ -40,6 +50,7 @@ public class SettleAction
                 _combatTracker.LogModifierLoss(pawn, temp);
             }
         }
+
         pawn.Modifiers.Add(modifier);
         _combatTracker.LogModifierGain(pawn, modifier);
     }
@@ -54,11 +65,11 @@ public class SettleAction
             {
                 if (modifier.Apply(0) > 0)
                 {
-                    SettleModifier(pawn,new Injury(modifier.Apply(0),modifier.Giver,0));
+                    SettleModifier(pawn, new Injury(modifier.Apply(0), modifier.Giver, 0));
                 }
                 else
                 {
-                    SettleModifier(pawn,new Heal(modifier.Apply(0),modifier.Giver,0));
+                    SettleModifier(pawn, new Heal(modifier.Apply(0), modifier.Giver, 0));
                 }
             }
 

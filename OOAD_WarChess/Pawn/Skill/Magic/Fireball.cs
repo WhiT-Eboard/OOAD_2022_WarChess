@@ -13,6 +13,7 @@ public class Fireball : Skill
         Cooldown = 2;
         CastTime = 0;
         APCost = 3;
+        DamageType = DamageType.Fire;
         Damage = 10;
         EffectArea = new List<(int, int)> {(0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)};
         Name = "Fireball";
