@@ -4,7 +4,7 @@ namespace OOAD_WarChess.Pawn.Modifier.Common;
 
 public class Heal : Modifier, IAggregate
 {
-    protected Heal(int value, Pawn giver, int id) : base(giver, id)
+    public Heal(int value, Pawn giver, int id) : base(giver, id)
     {
         Value = value;
         Apply = x => x + Value;

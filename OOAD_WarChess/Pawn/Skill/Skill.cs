@@ -7,19 +7,21 @@ namespace OOAD_WarChess.Pawn.Skill;
 
 public abstract class Skill : ISkill
 {
-    public SkillTarget TargetType { get; set; }
     public SkillType Type { get; set; }
+    public string Name { get; set; }
     public Pawn Initiator { get; set; }
     public List<Pawn> Target { get; set; }
     public DamageType DamageType { get; set; }
-    public Predicate<Global> Available { get; set; }
+    public int Damage { get; set; } 
     public Func<string> Description { get; set; }
     public Func<string> FullDescription { get; set; }
     public int Range { get; set; }
     public int Cooldown { get; set; }
     public int CastTime { get; set; }
-    public List<SkillEffectType> Effects { get; set; }
-    
+    public int APCost { get; set; }
+    public List<IModifier> Effects { get; set; }
+    public List<(int, int)> EffectArea { get; set; }
+
 
     public Skill(Pawn initiator)
     {
@@ -33,25 +35,10 @@ public abstract class Skill : ISkill
         throw new NotImplementedException();
     }
 
-    public virtual void Cast()
+
+    public virtual Tuple<int, string> Cast(Pawn initiator, Pawn receiver)
     {
-        
+        throw new NotImplementedException();
     }
 }
 
-public class SkillEffectImpl
-{
-    public Func<int, Pawn, int, IModifier> DealDamage = (val, giver, id) => new Injury(val, giver, id);
-
-
-    public static string GetEffectDescription(SkillEffectType effectType)
-    {
-        return effectType switch
-        {
-            SkillEffectType.DealDamage => Lang.Text["Skill_Effect_DealDamage"],
-            SkillEffectType.Heal => Lang.Text["Skill_Effect_Heal"],
-            SkillEffectType.ApplyEffect => Lang.Text["Skill_Effect_ApplyEffect"],
-            _ => throw new ArgumentOutOfRangeException(nameof(effectType), effectType, null)
-        };
-    }
-}

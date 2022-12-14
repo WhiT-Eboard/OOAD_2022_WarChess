@@ -12,8 +12,8 @@ public static class RuleSet
         return Dice.D100(1) <= attacker.CRIT;
     }
     
-    public static double CriticalDamageMultiplier(Pawn.Pawn attacker)
+    public static int CriticalDamageMultiplier()
     {
-        return 1.5;
+        return 2;
     }
 }

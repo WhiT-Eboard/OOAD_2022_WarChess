@@ -20,4 +20,13 @@ public struct Amour: IItem
     public int PhysicalDefence { get; set; }
     public int MagicalDefence { get; set; }
     public IModifier SpecialEffect { get; set; }
+    public Tuple<int, string> Cast(Pawn.Pawn pawn)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Tuple<int, string> Cast(Pawn.Pawn initiator, Pawn.Pawn receiver)
+    {
+        throw new NotImplementedException();
+    }
 }

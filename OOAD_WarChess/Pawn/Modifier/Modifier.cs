@@ -8,6 +8,7 @@ public abstract class Modifier : IModifier
 
     public int Duration { get; set; }
     public PawnAttribute Target { get; set; }
+    public bool IsUnique { get; set; } = false;
 
     public string Name { get; set; }
     public Func<string> Description { get; set; }
@@ -15,6 +16,11 @@ public abstract class Modifier : IModifier
     public Pawn Giver { get; set; }
     public int ID { get; set; }
     public bool Hidden { get; set; } = false;
+
+    public IModifier Clone()
+    {
+        return (Modifier) MemberwiseClone();
+    }
 
     protected Modifier(Pawn giver, int id)
     {

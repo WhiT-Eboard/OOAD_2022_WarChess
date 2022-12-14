@@ -6,6 +6,7 @@ public interface IModifier
     public ModifierType Type { get; set; } // Type of the modifier
     public int Duration { get; set; } // How many turns the modifier will last
     public PawnAttribute Target { get; set; }
+    public bool IsUnique { get; set; } // If the modifier is unique, it will be removed if another modifier of the same type is applied
 
     public string Name { get; set; }
     public Func<string> Description { get; set; }
@@ -14,11 +15,14 @@ public interface IModifier
     public int ID { get; set; } // ID is to identify the one single specific buff/debuff, used when remove
 
     public bool Hidden { get; set; }
+    
+    public IModifier Clone();
 }
 
 public enum ModifierType
 {
     Forever,
     Temporary,
+    EachTurn,
     Default
 }

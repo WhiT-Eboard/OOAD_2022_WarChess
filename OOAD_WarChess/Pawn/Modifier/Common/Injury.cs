@@ -9,6 +9,7 @@ public class Injury : Modifier, IAggregate
     {
         Value = value;
         Apply = (x) => x - Value;
+        Name = "Injury";
         Target = PawnAttribute.HP;
         Description = () => $"{Lang.Text["Modifier_Common_Injury"]}:-{Value} HP";
         Hidden = true;

@@ -1,10 +1,13 @@
+using OOAD_WarChess.Battle;
 using OOAD_WarChess.Item;
 using OOAD_WarChess.Pawn.Modifier;
+using OOAD_WarChess.Pawn.Skill;
 
 namespace OOAD_WarChess.Pawn;
 
 public struct Pawn
 {
+    public string Name { get; set; }
     private int _STR { get; set; } = 0; // Strength
     private int _DEX { get; set; } = 0; // Dexterity
     private int _INT { get; set; } = 0; // Intelligence
@@ -16,7 +19,7 @@ public struct Pawn
 
     private int _MAX_MP => 10 + INT * 10; // Mana Points
 
-    private int _SPD => DEX * 20 - BURDEN; // Speed
+    private int _SPD => 6; // Speed
 
     private int _PHY_DEF => CON * 2 * (STR % 2); // Physical Defense
 
@@ -43,11 +46,13 @@ public struct Pawn
 
     public List<IItem> Items { get; set; }
 
+    public List<ISkill> Skills { get; set; }
+
     public int EXP { get; set; } = 0;
 
     public int LVL => EXP / 1000; //TODO Change the formula
 
-    public Pawn(int str, int dex, int intel, int con)
+    public Pawn(int str, int dex, int intel, int con, string name)
     {
         _STR = str;
         _DEX = dex;
@@ -55,25 +60,15 @@ public struct Pawn
         _CON = con;
         Modifiers = new List<IModifier>();
         Items = new List<IItem>();
+        Skills = new List<ISkill>();
+        Name = name;
     }
 
     public int Id { get; set; } = new Guid().GetHashCode();
 
-    public void UpdateModifiers()
+    public Tuple<int, string> UpdateModifiers()
     {
-        for (var i = 0; i < Modifiers.Count; i++)
-        {
-            var modifier = Modifiers[i];
-            if (modifier.Type == ModifierType.Temporary && modifier.Duration <= 0)
-            {
-                Modifiers.Remove(modifier);
-                i--;
-            }
-            else
-            {
-                modifier.Duration--;
-            }
-        }
+        return SettleAction.instance.SettlePawn(this);
     }
 
     public int GetAttribute(PawnAttribute attribute)
@@ -86,7 +81,7 @@ public struct Pawn
             PawnAttribute.CON => _CON,
             PawnAttribute.HP => _MAX_HP,
             PawnAttribute.MP => _MAX_MP,
-            PawnAttribute.SPD => _SPD,
+            PawnAttribute.ACTPOINT => _SPD,
             PawnAttribute.PHY_DEF => _PHY_DEF,
             PawnAttribute.MAG_DEF => _MAG_DEF,
             PawnAttribute.PHY_ATK => _PHY_ATK,
@@ -97,6 +92,7 @@ public struct Pawn
             PawnAttribute.SHIELD => _SHIELD,
             PawnAttribute.MAX_BURDEN => _MAXBURDEN,
             PawnAttribute.BURDEN => BURDEN,
+            PawnAttribute.DEFAULT => 0,
             _ => throw new ArgumentOutOfRangeException(nameof(attribute), attribute, null)
         };
     }
@@ -114,7 +110,7 @@ public struct Pawn
     public int CON => GetModifiedAttribute(PawnAttribute.CON);
     public int HP => GetModifiedAttribute(PawnAttribute.HP);
     public int MP => GetModifiedAttribute(PawnAttribute.MP);
-    public int SPD => GetModifiedAttribute(PawnAttribute.SPD);
+    public int ACTPOINT => GetModifiedAttribute(PawnAttribute.ACTPOINT);
     public int PHY_DEF => GetModifiedAttribute(PawnAttribute.PHY_DEF);
     public int MAG_DEF => GetModifiedAttribute(PawnAttribute.MAG_DEF);
     public int PHY_ATK => GetModifiedAttribute(PawnAttribute.PHY_ATK);
@@ -144,7 +140,7 @@ public enum PawnAttribute
     CON,
     HP,
     MP,
-    SPD,
+    ACTPOINT,
     PHY_DEF,
     MAG_DEF,
     PHY_ATK,
@@ -154,5 +150,6 @@ public enum PawnAttribute
     CRIT,
     SHIELD,
     BURDEN,
-    MAX_BURDEN
+    MAX_BURDEN,
+    DEFAULT
 }

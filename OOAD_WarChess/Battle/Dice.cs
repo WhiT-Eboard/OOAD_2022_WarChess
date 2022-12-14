@@ -2,7 +2,7 @@ namespace OOAD_WarChess.Battle;
 
 public static class Dice
 {
-    private static Random _random = new(new Guid().GetHashCode());
+    private static Random _random = new(Guid.NewGuid().GetHashCode());
 
     public static Func<int,int> D6 = (x) => Roll(6,x);
     

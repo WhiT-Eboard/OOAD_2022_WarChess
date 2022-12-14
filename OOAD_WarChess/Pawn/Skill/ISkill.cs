@@ -1,36 +1,24 @@
 using OOAD_WarChess.Battle;
+using OOAD_WarChess.Pawn.Modifier;
 
 namespace OOAD_WarChess.Pawn.Skill;
 
-public interface ISkill
+public interface ISkill : ICast
 {
-    public SkillTarget TargetType { get; set; }
     public SkillType Type { get; set; }
+    public string Name { get; set; }
     public Pawn Initiator { get; set; }
     public List<Pawn> Target { get; set; }
     public DamageType DamageType { get; set; }
-    public Predicate<Global> Available { get; set; }
+    public int Damage { get; set; }
     public Func<string> Description { get; set; }
     public Func<string> FullDescription { get; set; }
     public int Range { get; set; }
     public int Cooldown { get; set; }
     public int CastTime { get; set; }
-    public List<SkillEffectType> Effects { get; set; }
-
-    public void Cast();
-}
-
-public enum SkillTarget
-{
-    Self,
-    SingleEnemy,
-    MultipleEnemies,
-    AllEnemies,
-    SingleAlly,
-    MultipleAllAllies,
-    AllAllies,
-    AllTargets,
-    NoTarget
+    public int APCost { get; set; }
+    public List<IModifier> Effects { get; set; }
+    public List<(int, int)> EffectArea { get; set; }
 }
 
 public enum SkillType

@@ -7,7 +7,7 @@ public struct PawnAction
     public PawnAction(Pawn.Pawn initiator, List<(int, int)> path, List<Skill> casts)
     {
         Initiator = initiator;
-        Speed = initiator.SPD;
+        Speed = initiator.ACTPOINT;
         Path = path;
         CastSkills = casts;
     }
