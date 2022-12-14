@@ -21,7 +21,7 @@ public interface IModifier
 
 public enum ModifierType
 {
-    Forever,
+    Permanent,
     Temporary,
     EachTurn,
     Default

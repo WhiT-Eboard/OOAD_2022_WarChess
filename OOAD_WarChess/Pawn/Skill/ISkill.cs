@@ -17,6 +17,8 @@ public interface ISkill : ICast
     public int Cooldown { get; set; }
     public int CastTime { get; set; }
     public int APCost { get; set; }
+    
+    public int MPCost { get; set; }
     public List<IModifier> Effects { get; set; }
     public List<(int, int)> EffectArea { get; set; }
 }
