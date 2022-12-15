@@ -1,20 +1,22 @@
-namespace OOAD_WarChess.Battle;
-
-public class Team
+namespace OOAD_WarChess.Battle
 {
-    private List<Pawn.Pawn> Pawns { get; set; }
-    
-    public TeamColor Color { get; set; }
-    
-    public Team()
+
+    public class Team
     {
-        Pawns = new List<Pawn.Pawn>();
-    }
-}
+        private List<Pawn.Pawn> Pawns { get; set; }
 
-public enum TeamColor
-{
-    Red=0,
-    Blue=1,
-    Count = 2
+        public TeamColor Color { get; set; }
+
+        public Team()
+        {
+            Pawns = new List<Pawn.Pawn>();
+        }
+    }
+
+    public enum TeamColor
+    {
+        Red = 0,
+        Blue = 1,
+        Count = 2
+    }
 }

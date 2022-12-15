@@ -1,29 +1,30 @@
 using OOAD_WarChess.Battle.Terran;
 
-namespace OOAD_WarChess.Battle.Map;
+namespace OOAD_WarChess.Battle.Map{
 
-public class Map
-{
-    public int Size { get; set; }
-
-    public List<Tile> BattleMap { get; set; }
-
-    public Environment.IEnvironment Environment { get; set; }
-    
-    public Tile At(int x, int y)
+    public class Map
     {
-        return BattleMap[x * Size + y];
-    }
+        public int Size { get; set; }
 
-    public Map(int size)
-    {
-        Size = size;
-        BattleMap = new List<Tile>();
-        for (var i = 0; i < size; i++)
+        public List<Tile> BattleMap { get; set; }
+
+        public Environment.IEnvironment Environment { get; set; }
+
+        public Tile At(int x, int y)
         {
-            for (var j = 0; j < size; j++)
+            return BattleMap[x * Size + y];
+        }
+
+        public Map(int size)
+        {
+            Size = size;
+            BattleMap = new List<Tile>();
+            for (var i = 0; i < size; i++)
             {
-                BattleMap.Add(new Tile(TerranType.Plain));
+                for (var j = 0; j < size; j++)
+                {
+                    BattleMap.Add(new Tile(TerranType.Plain));
+                }
             }
         }
     }

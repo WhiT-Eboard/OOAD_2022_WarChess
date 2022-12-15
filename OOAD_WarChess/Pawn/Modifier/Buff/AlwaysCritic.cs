@@ -1,16 +1,18 @@
 using OOAD_WarChess.Localization;
 
-namespace OOAD_WarChess.Pawn.Modifier.Buff;
-
-public class AlwaysCritic : Modifier
+namespace OOAD_WarChess.Pawn.Modifier.Buff
 {
-    // Buff example code
-    public AlwaysCritic(int value, Pawn giver, int id) : base(giver, id)
+
+    public class AlwaysCritic : Modifier
     {
-        Duration = value;
-        Type = ModifierType.Temporary;
-        Apply = x => 100;
-        Target = PawnAttribute.CRIT;
-        Description = () => string.Format(Lang.Text["Modifier_Buff_AlwaysCritic"], Duration);
+        // Buff example code
+        public AlwaysCritic(int value, Pawn giver, int id) : base(giver, id)
+        {
+            Duration = value;
+            Type = ModifierType.Temporary;
+            Apply = x => 100;
+            Target = PawnAttribute.CRIT;
+            Description = () => string.Format(Lang.Text["Modifier_Buff_AlwaysCritic"], Duration);
+        }
     }
 }

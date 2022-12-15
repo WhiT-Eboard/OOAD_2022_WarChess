@@ -1,22 +1,24 @@
 using OOAD_WarChess.Pawn.Skill;
 
-namespace OOAD_WarChess.Battle;
-
-public struct PawnAction
+namespace OOAD_WarChess.Battle
 {
-    public PawnAction(Pawn.Pawn initiator, List<(int, int)> path, List<Skill> casts)
+
+    public struct PawnAction
     {
-        Initiator = initiator;
-        Speed = initiator.ACTPOINT;
-        Path = path;
-        CastSkills = casts;
+        public PawnAction(Pawn.Pawn initiator, List<(int, int)> path, List<Skill> casts)
+        {
+            Initiator = initiator;
+            Speed = initiator.ACTPOINT;
+            Path = path;
+            CastSkills = casts;
+        }
+
+        public Pawn.Pawn Initiator { get; private set; }
+
+        public int Speed { get; private set; }
+
+        public List<(int, int)> Path { get; private set; }
+
+        public List<Skill> CastSkills { get; private set; } 
     }
-
-    public Pawn.Pawn Initiator { get; private set; }
-
-    public int Speed { get; private set; }
-
-    public List<(int, int)> Path { get; private set; } = new();
-
-    public List<Skill> CastSkills { get; private set; } = new();
 }

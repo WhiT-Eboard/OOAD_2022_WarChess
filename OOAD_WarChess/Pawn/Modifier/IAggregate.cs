@@ -1,8 +1,10 @@
-namespace OOAD_WarChess.Pawn.Modifier;
-
-public interface IAggregate
+namespace OOAD_WarChess.Pawn.Modifier
 {
-    public int Value { get; set; }
 
-    public void Aggregate(IAggregate a);
+    public interface IAggregate
+    {
+        public int Value { get; set; }
+
+        public void Aggregate(IAggregate a);
+    }
 }

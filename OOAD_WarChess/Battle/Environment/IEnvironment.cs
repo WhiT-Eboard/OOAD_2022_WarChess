@@ -1,13 +1,15 @@
-namespace OOAD_WarChess.Battle.Environment;
-
-public interface IEnvironment
+namespace OOAD_WarChess.Battle.Environment
 {
-    
-}
 
-public enum EnvType
-{
-    Normal,
-    Rain,
-    Fog
+    public interface IEnvironment
+    {
+
+    }
+
+    public enum EnvType
+    {
+        Normal,
+        Rain,
+        Fog
+    }
 }

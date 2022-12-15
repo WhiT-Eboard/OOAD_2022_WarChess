@@ -1,11 +1,13 @@
-namespace OOAD_WarChess.Util;
-
-public class RandomId
+namespace OOAD_WarChess.Util
 {
-    private static readonly Random Random = new(new Guid().GetHashCode());
 
-    public static int NewId()
+    public class RandomId
     {
-        return Random.Next();
+        private static readonly Random Random = new(new Guid().GetHashCode());
+
+        public static int NewId()
+        {
+            return Random.Next();
+        }
     }
 }
