@@ -1,3 +1,5 @@
+using System;
+
 namespace OOAD_WarChess.Battle
 {
 

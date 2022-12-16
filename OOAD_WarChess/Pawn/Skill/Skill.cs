@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using OOAD_WarChess.Battle;
 using OOAD_WarChess.Localization;
 using OOAD_WarChess.Pawn.Modifier;
@@ -31,6 +33,8 @@ namespace OOAD_WarChess.Pawn.Skill
             //FullDescription = () =>
             //  string.Format(Lang.Text["Skill_Full_Description"], Description(),, Range, CastTime, Cooldown);
         }
+        
+        public Skill(){}
 
         public string GetEffectDescription()
         {
@@ -39,6 +43,11 @@ namespace OOAD_WarChess.Pawn.Skill
 
 
         public virtual Tuple<int, string> Cast(Pawn initiator, Pawn receiver)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual Tuple<int, string> Cast(Pawn initiator, int value)
         {
             throw new NotImplementedException();
         }

@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using OOAD_WarChess.Battle;
 using OOAD_WarChess.Item;
 using OOAD_WarChess.Pawn.Modifier;
@@ -63,7 +66,7 @@ namespace OOAD_WarChess.Pawn
             Skills = new List<ISkill>();
             Name = name;
             EXP = 0;
-            Id = new Guid().GetHashCode();
+            Id = Guid.NewGuid().GetHashCode();
         }
 
         public int Id { get; set; }

@@ -1,21 +1,22 @@
 using System;
-using System.Collections.Generic;
 using OOAD_WarChess.Battle;
 
 namespace OOAD_WarChess.Pawn.Skill.Common
 {
-
-    public class MeleeAttack : Skill
+    public class UseItem : Skill
     {
-        public MeleeAttack(Pawn initiator) : base(initiator)
+        public UseItem(Pawn initiator) : base(initiator)
+        {
+        }
+
+        public UseItem()
         {
             APCost = 2;
-            Range = 1;
-            Name = "Attack";
-            Damage = 10;
             MPCost = 0;
-            EffectArea = new List<(int, int)> {(0, 0)};
-            DamageType = DamageType.Physical;
+            Cooldown = 1;
+            Range = 1;
+            Name = "Item";
+            Damage = 0;
         }
 
         public override Tuple<int, string> Cast(Pawn initiator, Pawn receiver)

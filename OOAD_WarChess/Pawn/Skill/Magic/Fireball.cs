@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using OOAD_WarChess.Battle;
 using OOAD_WarChess.Pawn.Modifier;
 using OOAD_WarChess.Pawn.Modifier.Common;

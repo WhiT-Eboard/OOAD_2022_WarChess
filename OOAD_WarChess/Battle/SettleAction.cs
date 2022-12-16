@@ -1,9 +1,10 @@
+using System;
 using OOAD_WarChess.Pawn.Modifier;
 using OOAD_WarChess.Pawn.Modifier.Common;
 using OOAD_WarChess.Pawn.Skill;
 
-namespace OOAD_WarChess.Battle{
-
+namespace OOAD_WarChess.Battle
+{
     public class SettleAction
     {
         private readonly CombatTracker _combatTracker = CombatTracker.Instance;
@@ -24,33 +25,41 @@ namespace OOAD_WarChess.Battle{
                 _ => RuleSet.DefendMagicalDamage(target,
                     RuleSet.DealMagicalDamage(initiator, skill.Damage))
             };
+            var realDamage = rawDamage * damageModifier;
+            if (realDamage > 0)
+            {
+                var damage = new Injury(damageModifier * rawDamage, initiator, 0);
+                SettleModifier(target, damage, skill.Name);
+            }
 
-            var damage = new Injury(damageModifier * rawDamage, initiator, 0);
-
-            SettleModifier(target, damage);
             foreach (var modifier in skill.Effects)
             {
-                SettleModifier(target, modifier.Clone());
+                SettleModifier(target, modifier.Clone(), skill.Name);
             }
 
             if (skill.APCost != 0)
             {
                 var exhaust = new Exhaust(skill.APCost, initiator, 0);
-                SettleModifier(initiator, exhaust);
+                SettleModifier(initiator, exhaust, skill.Name);
             }
 
             if (skill.MPCost != 0)
             {
                 var deplete = new Deplete(skill.MPCost, initiator, 0);
-                SettleModifier(initiator, deplete);
+                SettleModifier(initiator, deplete, skill.Name);
             }
 
-            var result = Tuple.Create<int, string>(rawDamage, "Fireball");
+            var result = Tuple.Create(realDamage, skill.Name + (damageModifier > 0 ? "Critical!!" : ""));
+            if (damageModifier > 0)
+            {
+                _combatTracker.LogMisc("Critical!!");
+            }
+
             _combatTracker.LogSkill(initiator.Name, target.Name, skill.Name, result);
             return result;
         }
 
-        private void SettleModifier(Pawn.Pawn pawn, IModifier modifier)
+        private void SettleModifier(Pawn.Pawn pawn, IModifier modifier, string skillName)
         {
             if (modifier.IsUnique)
             {
@@ -63,7 +72,7 @@ namespace OOAD_WarChess.Battle{
             }
 
             pawn.Modifiers.Add(modifier);
-            _combatTracker.LogModifierGain(pawn, modifier);
+            _combatTracker.LogModifierGain(pawn, modifier, skillName);
         }
 
         public Tuple<int, string> SettlePawn(Pawn.Pawn pawn)
@@ -76,11 +85,11 @@ namespace OOAD_WarChess.Battle{
                 {
                     if (modifier.Apply(0) > 0)
                     {
-                        SettleModifier(pawn, new Injury(modifier.Apply(0), modifier.Giver, 0));
+                        SettleModifier(pawn, new Injury(modifier.Apply(0), modifier.Giver, 0), modifier.Name);
                     }
                     else
                     {
-                        SettleModifier(pawn, new Heal(modifier.Apply(0), modifier.Giver, 0));
+                        SettleModifier(pawn, new Heal(modifier.Apply(0), modifier.Giver, 0), modifier.Name);
                     }
                 }
 

@@ -11,6 +11,7 @@ namespace OOAD_WarChess.Pawn.Modifier.Common
             Apply = x => x + Value;
             Target = PawnAttribute.HP;
             Description = () => $"{Lang.Text["Modifier_Common_Heal"]}:+{Value} HP";
+            Name = "Heal";
             Hidden = true;
         }
 
