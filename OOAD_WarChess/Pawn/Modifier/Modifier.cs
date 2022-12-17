@@ -29,6 +29,7 @@ namespace OOAD_WarChess.Pawn.Modifier
         {
             Giver = giver;
             ID = id;
+            Target = PawnAttribute.DEFAULT;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using OOAD_WarChess.Battle;
 using OOAD_WarChess.Item;
 using OOAD_WarChess.Pawn.Modifier;
+using OOAD_WarChess.Pawn.PawnClass;
 using OOAD_WarChess.Pawn.Skill;
 
 namespace OOAD_WarChess.Pawn
@@ -18,7 +19,7 @@ namespace OOAD_WarChess.Pawn
 
         // All the properties bellow are calculated from the above properties
 
-        private int _MAX_HP => CON * 10 + STR * 5; // Health Points
+        private int _MAX_HP => 100 + LVL*10 + CON * 10 + STR * 5; // Health Points
 
         private int _MAX_MP => 10 + INT * 10; // Mana Points
 
@@ -55,6 +56,37 @@ namespace OOAD_WarChess.Pawn
 
         public int LVL => EXP / 1000; //TODO Change the formula
 
+        public IPawnClass Class { get; set; }
+
+        public void Init(PawnClass.PawnClass pawnClass)
+        {
+            Class = pawnClass;
+            if (Class == PawnClass.PawnClass.Temp) return;
+            _STR = Class.STR;
+            _DEX = Class.DEX;
+            _INT = Class.INT;
+            _CON = Class.CON;
+            foreach (var skill in Class.SkillSet)
+            {
+                Skills.Add(skill);
+            }
+        }
+
+        public Pawn(string name)
+        {
+            _STR = 0;
+            _DEX = 0;
+            _INT = 0;
+            _CON = 0;
+            Modifiers = new List<IModifier>();
+            Items = new List<IItem>();
+            Skills = new List<ISkill>();
+            Name = name;
+            EXP = 0;
+            Id = Guid.NewGuid().GetHashCode();
+            Class = PawnClass.PawnClass.Temp;
+        }
+
         public Pawn(int str, int dex, int intel, int con, string name)
         {
             _STR = str;
@@ -67,6 +99,7 @@ namespace OOAD_WarChess.Pawn
             Name = name;
             EXP = 0;
             Id = Guid.NewGuid().GetHashCode();
+            Class = PawnClass.PawnClass.Temp;
         }
 
         public int Id { get; set; }
@@ -74,6 +107,12 @@ namespace OOAD_WarChess.Pawn
         public Tuple<int, string> UpdateModifiers()
         {
             return SettleAction.Instance.SettlePawn(this);
+        }
+
+        public Tuple<int, string> GainExp(int value)
+        {
+            EXP += value;
+            return Tuple.Create<int, string>(0,"EXP Gained");
         }
 
         public int GetAttribute(PawnAttribute attribute)
@@ -96,6 +135,7 @@ namespace OOAD_WarChess.Pawn
                 PawnAttribute.CRIT => _CRIT,
                 PawnAttribute.SHIELD => _SHIELD,
                 PawnAttribute.MAX_BURDEN => _MAXBURDEN,
+                PawnAttribute.EXP => EXP,
                 PawnAttribute.BURDEN => BURDEN,
                 PawnAttribute.DEFAULT => 0,
                 _ => throw new ArgumentOutOfRangeException(nameof(attribute), attribute, null)
@@ -156,6 +196,7 @@ namespace OOAD_WarChess.Pawn
         SHIELD,
         BURDEN,
         MAX_BURDEN,
+        EXP,
         DEFAULT
     }
 }

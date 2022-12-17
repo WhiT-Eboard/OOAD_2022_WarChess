@@ -13,6 +13,8 @@ namespace OOAD_WarChess.Battle
 
         public static bool IsDebug = true;
 
+        private int _newLogCount = 0;
+
         private CombatTracker()
         {
         }
@@ -46,7 +48,7 @@ namespace OOAD_WarChess.Battle
             {
                 Console.WriteLine(CombatLogToString(_combatLogList.Last()));
             }
-
+            _newLogCount++;
             return CombatLogToString(_combatLogList.Last());
         }
 
@@ -57,7 +59,7 @@ namespace OOAD_WarChess.Battle
             {
                 Console.WriteLine(CombatLogToString(_combatLogList.Last()));
             }
-
+            _newLogCount++;
             return CombatLogToString(_combatLogList.Last());
         }
 
@@ -68,7 +70,7 @@ namespace OOAD_WarChess.Battle
             {
                 Console.WriteLine(CombatLogToString(_combatLogList.Last()));
             }
-
+            _newLogCount++;
             return CombatLogToString(_combatLogList.Last());
         }
 
@@ -80,7 +82,7 @@ namespace OOAD_WarChess.Battle
             {
                 Console.WriteLine(CombatLogToString(_combatLogList.Last()));
             }
-
+            _newLogCount++;
             return CombatLogToString(_combatLogList.Last());
         }
 
@@ -91,8 +93,24 @@ namespace OOAD_WarChess.Battle
             {
                 Console.WriteLine(CombatLogToString(_combatLogList.Last()));
             }
-
+            _newLogCount++;
             return CombatLogToString(_combatLogList.Last());
+        }
+
+        public string GetNewLog()
+        {
+            if (_newLogCount == 0)
+            {
+                return "";
+            }
+            var result = "";
+            for (var i = _combatLogList.Count - _newLogCount; i < _combatLogList.Count; i++)
+            {
+                result += CombatLogToString(_combatLogList[i]) + "\n";
+            }
+
+            _newLogCount = 0;
+            return result;
         }
 
         public enum LogType

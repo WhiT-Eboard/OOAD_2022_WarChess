@@ -50,7 +50,7 @@ namespace OOAD_WarChess.Battle
             }
 
             var result = Tuple.Create(realDamage, skill.Name + (damageModifier > 0 ? "Critical!!" : ""));
-            if (damageModifier > 0)
+            if (damageModifier > 0 && realDamage > 0)
             {
                 _combatTracker.LogMisc("Critical!!");
             }
@@ -108,6 +108,13 @@ namespace OOAD_WarChess.Battle
             }
 
             return result;
+        }
+
+        public Tuple<int, string> SettleExpGain(Pawn.Pawn pawn, int value)
+        {
+            var previousLevel = pawn.LVL;
+            pawn.EXP += value;
+            return Tuple.Create<int, string>(0,"");
         }
     }
 }

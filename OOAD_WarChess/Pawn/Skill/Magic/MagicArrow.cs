@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+using OOAD_WarChess.Battle;
+
+namespace OOAD_WarChess.Pawn.Skill.Magic
+{
+    public class MagicArrow : Skill
+    {
+        public MagicArrow(Pawn initiator) : base(initiator)
+        {
+            Name = "Magic Arrow";
+            APCost = 2;
+            Damage = 10;
+            MPCost = 10;
+            Range = 3;
+            EffectArea = new List<(int, int)> {(0, 0)};
+            DamageType = DamageType.Arcane;
+        }
+
+        public override Tuple<int, string> Cast(Pawn initiator, Pawn receiver)
+        {
+            return SettleAction.Instance.SettleSkill(this, initiator, receiver);
+        }
+    }
+}
