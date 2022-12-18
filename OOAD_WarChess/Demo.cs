@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace OOAD_WarChess
 {
-
     public class Demo
     {
         private List<Pawn.Pawn> _pawns = new();
@@ -31,15 +30,13 @@ namespace OOAD_WarChess
             Console.WriteLine("--------------------Start Turn Phase---------------------");
             action.Invoke();
             Console.WriteLine("---------------------------------------------------------");
-
         }
 
         public void EndTurn()
         {
             Console.WriteLine("--------------------End Turn Phase---------------------");
-            _pawns.ForEach(p => p.UpdateModifiers());
+            _pawns.ForEach(p => p.UpdateModifiers(out _));
             Console.WriteLine("-------------------------------------------------------");
-
         }
 
 

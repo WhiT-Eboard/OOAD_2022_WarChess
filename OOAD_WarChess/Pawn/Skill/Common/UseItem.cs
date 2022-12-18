@@ -19,9 +19,11 @@ namespace OOAD_WarChess.Pawn.Skill.Common
             Damage = 0;
         }
 
-        public override Tuple<int, string> Cast(Pawn initiator, Pawn receiver)
+        public override Tuple<int, string> Cast(Pawn initiator, Pawn receiver, out string log)
         {
-            return SettleAction.Instance.SettleSkill(this, initiator, receiver);
+            var result = SettleAction.Instance.SettleSkill(this, initiator, receiver);
+            log = CombatTracker.Instance.GetNewLog();
+            return result;
         }
     }
 }

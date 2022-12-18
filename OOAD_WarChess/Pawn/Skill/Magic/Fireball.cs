@@ -24,9 +24,11 @@ namespace OOAD_WarChess.Pawn.Skill.Magic
             Effects = new List<IModifier> {new Burn(3, initiator, 1)};
         }
 
-        public override Tuple<int, string> Cast(Pawn initiator, Pawn receiver)
+        public override Tuple<int, string> Cast(Pawn initiator, Pawn receiver,out string log)
         {
-            return SettleAction.Instance.SettleSkill(this, initiator, receiver);
+            var result = SettleAction.Instance.SettleSkill(this, initiator, receiver);
+            log = CombatTracker.Instance.GetNewLog();
+            return result;
         }
     }
 }

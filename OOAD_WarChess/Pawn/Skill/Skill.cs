@@ -42,7 +42,7 @@ namespace OOAD_WarChess.Pawn.Skill
         }
 
 
-        public virtual Tuple<int, string> Cast(Pawn initiator, Pawn receiver)
+        public virtual Tuple<int, string> Cast(Pawn initiator, Pawn receiver,out string log)
         {
             throw new NotImplementedException();
         }

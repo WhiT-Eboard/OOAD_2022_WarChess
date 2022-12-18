@@ -104,9 +104,11 @@ namespace OOAD_WarChess.Pawn
 
         public int Id { get; set; }
 
-        public Tuple<int, string> UpdateModifiers()
+        public Tuple<int, string> UpdateModifiers(out string log)
         {
-            return SettleAction.Instance.SettlePawn(this);
+            var result = SettleAction.Instance.SettlePawn(this);
+            log = CombatTracker.Instance.GetNewLog();
+            return result;
         }
 
         public Tuple<int, string> GainExp(int value)

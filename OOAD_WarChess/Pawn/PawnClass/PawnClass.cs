@@ -27,8 +27,9 @@ namespace OOAD_WarChess.Pawn.PawnClass
             SkillSet.Add(new MeleeAttack(pawn));
         }
 
-        public static void Create(ref Pawn pawn, PawnClassType type)
+        public static Pawn Create(string name, PawnClassType type)
         {
+            var pawn = new Pawn(name);
             PawnClass pawnClass = type switch
             {
                 PawnClassType.Warrior => new Warrior(pawn),
@@ -38,6 +39,7 @@ namespace OOAD_WarChess.Pawn.PawnClass
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
             pawn.Init(pawnClass);
+            return pawn;
         }
     }
 

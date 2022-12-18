@@ -7,10 +7,12 @@ namespace OOAD_WarChess.Item;
 
 public class Item : IItem
 {
-    public virtual Tuple<int, string> Cast(Pawn.Pawn initiator, Pawn.Pawn receiver)
+    public virtual Tuple<int, string> Cast(Pawn.Pawn initiator, Pawn.Pawn receiver,out string log)
     {
         ItemEffect.Name = Name;
-        return SettleAction.Instance.SettleSkill(ItemEffect, initiator, receiver);
+        var result = SettleAction.Instance.SettleSkill(ItemEffect, initiator, receiver);
+        log = CombatTracker.Instance.GetNewLog();
+        return result;
     }
 
     public Tuple<int, string> Cast(Pawn.Pawn initiator, int value)
