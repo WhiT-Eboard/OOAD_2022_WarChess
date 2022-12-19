@@ -7,7 +7,6 @@ using OOAD_WarChess.Pawn.Modifier.Common;
 
 namespace OOAD_WarChess.Pawn.Skill
 {
-
     public abstract class Skill : ISkill
     {
         public SkillType Type { get; set; }
@@ -18,11 +17,11 @@ namespace OOAD_WarChess.Pawn.Skill
         public int Damage { get; set; } = 0;
         public Func<string> Description { get; set; }
         public Func<string> FullDescription { get; set; }
-        public int Range { get; set; } 
-        public int Cooldown { get; set; } 
-        public int CastTime { get; set; } 
-        public int APCost { get; set; }  
-        public int MPCost { get; set; } 
+        public int Range { get; set; }
+        public int Cooldown { get; set; }
+        public int CastTime { get; set; }
+        public int APCost { get; set; }
+        public int MPCost { get; set; }
         public List<IModifier> Effects { get; set; } = new();
         public List<(int, int)> EffectArea { get; set; } = new();
 
@@ -33,8 +32,10 @@ namespace OOAD_WarChess.Pawn.Skill
             //FullDescription = () =>
             //  string.Format(Lang.Text["Skill_Full_Description"], Description(),, Range, CastTime, Cooldown);
         }
-        
-        public Skill(){}
+
+        public Skill()
+        {
+        }
 
         public string GetEffectDescription()
         {
@@ -42,9 +43,14 @@ namespace OOAD_WarChess.Pawn.Skill
         }
 
 
-        public virtual Tuple<int, string> Cast(Pawn initiator, Pawn receiver,out string log)
+        public virtual Tuple<int, string> Cast(Pawn initiator, Pawn receiver, out string log)
         {
             throw new NotImplementedException();
+        }
+
+        public Tuple<int, string> Cast(Pawn initiator, Pawn receiver)
+        {
+            return Cast(initiator, receiver, out _);
         }
 
         public virtual Tuple<int, string> Cast(Pawn initiator, int value)

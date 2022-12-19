@@ -15,6 +15,11 @@ public class Item : IItem
         return result;
     }
 
+    public Tuple<int, string> Cast(Pawn.Pawn initiator, Pawn.Pawn receiver)
+    {
+        return Cast(initiator, receiver, out _);
+    }
+
     public Tuple<int, string> Cast(Pawn.Pawn initiator, int value)
     {
         throw new NotImplementedException();

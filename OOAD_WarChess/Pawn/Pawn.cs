@@ -19,7 +19,7 @@ namespace OOAD_WarChess.Pawn
 
         // All the properties bellow are calculated from the above properties
 
-        private int _MAX_HP => 100 + LVL*10 + CON * 10 + STR * 5; // Health Points
+        private int _MAX_HP => 100 + LVL * 10 + CON * 10 + STR * 5; // Health Points
 
         private int _MAX_MP => 10 + INT * 10; // Mana Points
 
@@ -104,6 +104,11 @@ namespace OOAD_WarChess.Pawn
 
         public int Id { get; set; }
 
+        public Tuple<int, string> UpdateModifiers()
+        {
+            return UpdateModifiers(out _);
+        }
+
         public Tuple<int, string> UpdateModifiers(out string log)
         {
             var result = SettleAction.Instance.SettlePawn(this);
@@ -114,7 +119,7 @@ namespace OOAD_WarChess.Pawn
         public Tuple<int, string> GainExp(int value)
         {
             EXP += value;
-            return Tuple.Create<int, string>(0,"EXP Gained");
+            return Tuple.Create<int, string>(0, "EXP Gained");
         }
 
         public int GetAttribute(PawnAttribute attribute)
