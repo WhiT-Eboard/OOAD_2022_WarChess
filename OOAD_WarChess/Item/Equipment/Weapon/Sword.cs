@@ -8,7 +8,7 @@ namespace OOAD_WarChess.Item.Equipment.Weapon
             Name = "Sword";
             PHY_ATK = 10;
             PHY_DEF = 0;
-            MAG_ATK = 0;
+            MAG_ATK = 1;
             MAG_DEF = 0;
         }
     }
