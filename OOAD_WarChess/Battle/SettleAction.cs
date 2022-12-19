@@ -1,4 +1,5 @@
 using System;
+using OOAD_WarChess.Pawn;
 using OOAD_WarChess.Pawn.Modifier;
 using OOAD_WarChess.Pawn.Modifier.Common;
 using OOAD_WarChess.Pawn.Skill;
@@ -34,7 +35,18 @@ namespace OOAD_WarChess.Battle
 
             foreach (var modifier in skill.Effects)
             {
-                SettleModifier(target, modifier.Clone(), skill.Name);
+                if (modifier is Heal)
+                {
+                    if (modifier.Apply(target.HP) > target.GetAttribute(PawnAttribute.HP))
+                    {
+                        SettleModifier(target,
+                            new Heal(target.GetAttribute(PawnAttribute.HP) - target.HP, initiator, 0), skill.Name);
+                    }
+                }
+                else
+                {
+                    SettleModifier(target, modifier.Clone(), skill.Name);
+                }
             }
 
             if (skill.APCost != 0)
@@ -50,7 +62,7 @@ namespace OOAD_WarChess.Battle
             }
 
             var result = Tuple.Create(realDamage, skill.Name + (damageModifier > 0 ? "Critical!!" : ""));
-            if (damageModifier > 0 && realDamage > 0)
+            if (damageModifier > 1 && realDamage > 0)
             {
                 _combatTracker.LogMisc("Critical!!");
             }
@@ -114,7 +126,7 @@ namespace OOAD_WarChess.Battle
         {
             var previousLevel = pawn.LVL;
             pawn.EXP += value;
-            return Tuple.Create<int, string>(0,"");
+            return Tuple.Create<int, string>(0, "");
         }
     }
 }
