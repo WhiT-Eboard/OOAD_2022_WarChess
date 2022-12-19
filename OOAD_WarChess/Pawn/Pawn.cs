@@ -116,8 +116,9 @@ namespace OOAD_WarChess.Pawn
             return result;
         }
 
-        public Tuple<int, string> GainExp(int value)
+        public Tuple<int, string> GainExp(int value,out string log)
         {
+            log = "";
             CombatTracker.Instance.LogMisc($"{Name} gained {value} EXP");
             if (LVL >= 3) return Tuple.Create<int, string>(0, "EXP Gained");
             var temp = LVL;
@@ -129,6 +130,8 @@ namespace OOAD_WarChess.Pawn
                 CombatTracker.Instance.LogMisc($"{Name} learned new skill {Class.SkillSet[Skills.Count].Name}!");
                 Skills.Add(Class.SkillSet[Skills.Count]);
             }
+
+            log = CombatTracker.Instance.GetNewLog();
             return Tuple.Create<int, string>(0, "EXP Gained");
         }
 
