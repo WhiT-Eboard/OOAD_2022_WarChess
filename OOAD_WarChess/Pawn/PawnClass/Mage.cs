@@ -1,3 +1,4 @@
+using OOAD_WarChess.Pawn.Skill.Ability;
 using OOAD_WarChess.Pawn.Skill.Magic;
 
 namespace OOAD_WarChess.Pawn.PawnClass
@@ -12,6 +13,7 @@ namespace OOAD_WarChess.Pawn.PawnClass
             INT = 8;
             CON = 2;
             SkillSet.Add(new MagicArrow(pawn));
+            SkillSet.Add(new Manaward(pawn));
             SkillSet.Add(new Fireball(pawn));
         }
     }

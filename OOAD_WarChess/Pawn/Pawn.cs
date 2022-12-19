@@ -54,7 +54,7 @@ namespace OOAD_WarChess.Pawn
 
         public int EXP { get; set; }
 
-        public int LVL => EXP / 1000; //TODO Change the formula
+        public int LVL => 1 + EXP / 1000; //TODO Change the formula
 
         public IPawnClass Class { get; set; }
 
@@ -66,9 +66,9 @@ namespace OOAD_WarChess.Pawn
             _DEX = Class.DEX;
             _INT = Class.INT;
             _CON = Class.CON;
-            foreach (var skill in Class.SkillSet)
+            for (var i = 0; i < 3; i++)
             {
-                Skills.Add(skill);
+                Skills.Add(pawnClass.SkillSet[i]);
             }
         }
 
@@ -118,7 +118,17 @@ namespace OOAD_WarChess.Pawn
 
         public Tuple<int, string> GainExp(int value)
         {
+            CombatTracker.Instance.LogMisc($"{Name} gained {value} EXP");
+            if (LVL >= 3) return Tuple.Create<int, string>(0, "EXP Gained");
+            var temp = LVL;
             EXP += value;
+            var diff = (LVL - temp) > 2? 2 : LVL - temp;
+            while (diff-- > 0)
+            {
+                CombatTracker.Instance.LogMisc($"{Name} leveled up!");
+                CombatTracker.Instance.LogMisc($"{Name} learned new skill {Class.SkillSet[Skills.Count].Name}!");
+                Skills.Add(Class.SkillSet[Skills.Count]);
+            }
             return Tuple.Create<int, string>(0, "EXP Gained");
         }
 

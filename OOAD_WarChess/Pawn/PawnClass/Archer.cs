@@ -1,3 +1,6 @@
+using OOAD_WarChess.Pawn.Skill.Ability;
+using OOAD_WarChess.Pawn.Skill.WeaponSkill;
+
 namespace OOAD_WarChess.Pawn.PawnClass
 {
     public class Archer : PawnClass
@@ -9,7 +12,9 @@ namespace OOAD_WarChess.Pawn.PawnClass
             DEX = 8;
             INT = 1;
             CON = 5;
-            
+            SkillSet.Add(new StraightShot(pawn));
+            SkillSet.Add(new BattleVoice(pawn));
+            SkillSet.Add(new ApexArrow(pawn));
         }
     }
 }

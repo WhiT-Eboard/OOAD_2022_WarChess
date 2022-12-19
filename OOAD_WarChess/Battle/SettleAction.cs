@@ -26,6 +26,7 @@ namespace OOAD_WarChess.Battle
                 _ => RuleSet.DefendMagicalDamage(target,
                     RuleSet.DealMagicalDamage(initiator, skill.Damage))
             };
+            if (rawDamage < 0) rawDamage = 0;
             var realDamage = rawDamage * damageModifier;
             if (realDamage > 0)
             {

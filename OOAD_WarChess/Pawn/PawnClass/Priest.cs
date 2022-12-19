@@ -1,3 +1,5 @@
+using OOAD_WarChess.Pawn.Skill.Magic;
+
 namespace OOAD_WarChess.Pawn.PawnClass
 {
     public class Priest : PawnClass
@@ -9,6 +11,9 @@ namespace OOAD_WarChess.Pawn.PawnClass
             DEX = 4;
             INT = 5;
             CON = 5;
+            SkillSet.Add(new Glare(pawn));
+            SkillSet.Add(new Cure(pawn));
+            SkillSet.Add(new Medica(pawn));
         }
     }
 }

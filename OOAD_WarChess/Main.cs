@@ -7,6 +7,7 @@ using OOAD_WarChess.Localization;
 using OOAD_WarChess.Pawn;
 using OOAD_WarChess.Pawn.Modifier.Buff;
 using OOAD_WarChess.Pawn.PawnClass;
+using OOAD_WarChess.Pawn.Skill.Ability;
 using OOAD_WarChess.Pawn.Skill.Common;
 using OOAD_WarChess.Pawn.Skill.Magic;
 
@@ -23,9 +24,9 @@ demo.ListPawnDetail();
 demo.ActOneTurn(
     (() =>
     {
-        p1.Skills[1].Cast(p1, p2);
-        p1.Skills[1].Cast(p1, p2);
-        p1.Skills[1].Cast(p1, p2);
+        p1.GainExp(10000);
+        p1.Skills.Find(x => x is Manaward).Cast(p1, p1);
+        p1.Skills.Find(x => x is MagicArrow).Cast(p1, p1);
     })
 );
 demo.ActOneTurn(

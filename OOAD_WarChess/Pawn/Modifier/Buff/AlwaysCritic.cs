@@ -9,6 +9,7 @@ namespace OOAD_WarChess.Pawn.Modifier.Buff
         public AlwaysCritic(int value, Pawn giver, int id) : base(giver, id)
         {
             Duration = value;
+            Name = "Always Critic";
             Type = ModifierType.Temporary;
             Apply = x => 100;
             Target = PawnAttribute.CRIT;
