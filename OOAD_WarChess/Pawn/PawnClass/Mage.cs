@@ -1,3 +1,5 @@
+using OOAD_WarChess.Item.Equipment.Amour;
+using OOAD_WarChess.Item.Equipment.Weapon;
 using OOAD_WarChess.Pawn.Skill.Ability;
 using OOAD_WarChess.Pawn.Skill.Magic;
 
@@ -15,6 +17,8 @@ namespace OOAD_WarChess.Pawn.PawnClass
             SkillSet.Add(new MagicArrow(pawn));
             SkillSet.Add(new Manaward(pawn));
             SkillSet.Add(new Fireball(pawn));
+            Weapon = new Wand();
+            Armor = new SampleArmor();
         }
     }
 }

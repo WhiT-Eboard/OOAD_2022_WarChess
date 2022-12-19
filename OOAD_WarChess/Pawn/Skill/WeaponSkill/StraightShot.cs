@@ -15,8 +15,8 @@ namespace OOAD_WarChess.Pawn.Skill.WeaponSkill
             MPCost = 0;
             DamageType = DamageType.Physical;
             Damage = 8;
-            EffectArea = new List<(int, int)> {(0, 0)};
             Name = "Straight Shot";
+            Type = SkillType.SingleEnemy;
         }
 
         public override Tuple<int, string> Cast(Pawn initiator, Pawn receiver, out string log)

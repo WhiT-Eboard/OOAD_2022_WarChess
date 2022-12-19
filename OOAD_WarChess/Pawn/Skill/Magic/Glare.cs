@@ -18,7 +18,7 @@ namespace OOAD_WarChess.Pawn.Skill.Magic
             MPCost = 10;
             DamageType = DamageType.Arcane;
             Damage = 10;
-            EffectArea = new List<(int, int)> {(0, 0)};
+            Type = SkillType.SinglePlayer;
             Name = "Glare";
         }
 

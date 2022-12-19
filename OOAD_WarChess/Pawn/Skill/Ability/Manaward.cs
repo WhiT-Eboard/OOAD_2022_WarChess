@@ -17,7 +17,7 @@ namespace OOAD_WarChess.Pawn.Skill.Ability
             MPCost = 20;
             DamageType = DamageType.Pure;
             Damage = 0;
-            EffectArea = new List<(int, int)> {(0, 0)};
+            Type = SkillType.SinglePlayer;
             Name = "Manaward";
             Effects = new List<IModifier> {new ManaShield(1, initiator, 1)};
         }

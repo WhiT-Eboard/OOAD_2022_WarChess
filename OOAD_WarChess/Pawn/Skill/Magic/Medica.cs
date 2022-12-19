@@ -17,7 +17,8 @@ namespace OOAD_WarChess.Pawn.Skill.Magic
             MPCost = 50;
             DamageType = DamageType.Pure;
             Damage = 0;
-            EffectArea = new List<(int, int)> {(0, 0), (0, 1), (0, -1), (1, 0), (-1, 0)};
+            EffectArea = Tuple.Create<int, int>(3, 3);
+            Type = SkillType.PlayerArea;
             Name = "Medica";
             Effects = new List<IModifier> {new Heal(30, initiator, 1)};
         }

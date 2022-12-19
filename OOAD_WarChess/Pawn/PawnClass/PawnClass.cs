@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using OOAD_WarChess.Item.Equipment;
 using OOAD_WarChess.Pawn.Skill;
 using OOAD_WarChess.Pawn.Skill.Common;
 
@@ -15,6 +16,10 @@ namespace OOAD_WarChess.Pawn.PawnClass
         public List<ISkill> SkillSet { get; set; }
 
         public static PawnClass Temp = new PawnClass();
+        
+        public IEquipment Weapon { get; set; }
+        
+        public IEquipment Armor { get; set; }
 
         private PawnClass()
         {

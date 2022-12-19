@@ -1,3 +1,5 @@
+using OOAD_WarChess.Item.Equipment.Amour;
+using OOAD_WarChess.Item.Equipment.Weapon;
 using OOAD_WarChess.Pawn.Skill.Ability;
 using OOAD_WarChess.Pawn.Skill.WeaponSkill;
 
@@ -15,6 +17,8 @@ namespace OOAD_WarChess.Pawn.PawnClass
             SkillSet.Add(new StraightShot(pawn));
             SkillSet.Add(new BattleVoice(pawn));
             SkillSet.Add(new ApexArrow(pawn));
+            Weapon = new Bow();
+            Armor = new SampleArmor();
         }
     }
 }

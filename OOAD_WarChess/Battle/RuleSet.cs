@@ -1,6 +1,5 @@
 namespace OOAD_WarChess.Battle
 {
-
     public static class RuleSet
     {
         public static bool IsHit(Pawn.Pawn attacker, Pawn.Pawn defender)
@@ -20,7 +19,7 @@ namespace OOAD_WarChess.Battle
 
         public static int DealPhysicalDamage(Pawn.Pawn pawn, int damage)
         {
-            return damage / 10 * pawn.PHY_ATK;
+            return damage / 10 * pawn.PHY_ATK + pawn.Weapon.PHY_ATK * 5;
         }
 
         public static int DealTureDamage(Pawn.Pawn pawn, int damage)
@@ -30,12 +29,12 @@ namespace OOAD_WarChess.Battle
 
         public static int DealMagicalDamage(Pawn.Pawn pawn, int damage)
         {
-            return damage / 10 * pawn.MAG_ATK;
+            return damage / 10 * pawn.MAG_ATK + pawn.Weapon.MAG_ATK * 5;
         }
 
         public static int DefendPhysicalDamage(Pawn.Pawn pawn, int damage)
         {
-            return damage - pawn.PHY_DEF;
+            return damage - pawn.PHY_DEF - pawn.Armor.PHY_DEF;
         }
 
         public static int DefendTrueDamage(Pawn.Pawn pawn, int damage)
@@ -45,7 +44,7 @@ namespace OOAD_WarChess.Battle
 
         public static int DefendMagicalDamage(Pawn.Pawn pawn, int damage)
         {
-            return damage - pawn.MAG_DEF;
+            return damage - pawn.MAG_DEF - pawn.Armor.MAG_DEF;
         }
     }
 }

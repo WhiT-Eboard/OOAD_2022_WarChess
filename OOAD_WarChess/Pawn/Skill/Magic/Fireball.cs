@@ -7,7 +7,6 @@ using OOAD_WarChess.Pawn.Modifier.Debuff;
 
 namespace OOAD_WarChess.Pawn.Skill.Magic
 {
-
     public class Fireball : Skill
     {
         public Fireball(Pawn initiator) : base(initiator)
@@ -19,12 +18,13 @@ namespace OOAD_WarChess.Pawn.Skill.Magic
             MPCost = 30;
             DamageType = DamageType.Fire;
             Damage = 10;
-            EffectArea = new List<(int, int)> {(0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)};
+            EffectArea = Tuple.Create(3, 3);
+            Type = SkillType.EnemyArea;
             Name = "Fireball";
             Effects = new List<IModifier> {new Burn(3, initiator, 1)};
         }
 
-        public override Tuple<int, string> Cast(Pawn initiator, Pawn receiver,out string log)
+        public override Tuple<int, string> Cast(Pawn initiator, Pawn receiver, out string log)
         {
             var result = SettleAction.Instance.SettleSkill(this, initiator, receiver);
             log = CombatTracker.Instance.GetNewLog();

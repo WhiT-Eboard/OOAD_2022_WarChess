@@ -26,7 +26,7 @@ namespace OOAD_WarChess.Battle
                 LogType.Skill => $"{log.Item1} used {log.Item3} on {log.Item2}. Deal {log.Item4} damage.",
                 LogType.ModifierLoss => $"{log.Item1} lost effect {log.Item2}",
                 LogType.ModifierGain =>
-                    $"{log.Item1} gain effect {log.Item2} from {log.Item3}({log.Item5}) for {log.Item4} turns",
+                    $"{log.Item1} gain effect {log.Item2} from {log.Item3}({log.Item5}) for {log.Item4} turn(s)",
                 LogType.Item => $"{log.Item1} used Item {log.Item3} on {log.Item2}",
                 LogType.Misc => $"{log.Item1}",
                 _ => throw new ArgumentOutOfRangeException()

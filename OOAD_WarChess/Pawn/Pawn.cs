@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using OOAD_WarChess.Battle;
 using OOAD_WarChess.Item;
+using OOAD_WarChess.Item.Equipment;
 using OOAD_WarChess.Pawn.Modifier;
 using OOAD_WarChess.Pawn.PawnClass;
 using OOAD_WarChess.Pawn.Skill;
@@ -58,6 +59,10 @@ namespace OOAD_WarChess.Pawn
 
         public IPawnClass Class { get; set; }
 
+        public IEquipment Weapon { get; set; }
+
+        public IEquipment Armor { get; set; }
+
         public void Init(PawnClass.PawnClass pawnClass)
         {
             Class = pawnClass;
@@ -70,6 +75,9 @@ namespace OOAD_WarChess.Pawn
             {
                 Skills.Add(pawnClass.SkillSet[i]);
             }
+
+            Weapon = pawnClass.Weapon;
+            Armor = pawnClass.Armor;
         }
 
         public Pawn(string name)
@@ -85,6 +93,8 @@ namespace OOAD_WarChess.Pawn
             EXP = 0;
             Id = Guid.NewGuid().GetHashCode();
             Class = PawnClass.PawnClass.Temp;
+            Weapon = null;
+            Armor = null;
         }
 
         public Pawn(int str, int dex, int intel, int con, string name)
@@ -100,6 +110,8 @@ namespace OOAD_WarChess.Pawn
             EXP = 0;
             Id = Guid.NewGuid().GetHashCode();
             Class = PawnClass.PawnClass.Temp;
+            Weapon = null;
+            Armor = null;
         }
 
         public int Id { get; set; }
@@ -116,14 +128,14 @@ namespace OOAD_WarChess.Pawn
             return result;
         }
 
-        public Tuple<int, string> GainExp(int value,out string log)
+        public Tuple<int, string> GainExp(int value, out string log)
         {
             log = "";
             CombatTracker.Instance.LogMisc($"{Name} gained {value} EXP");
             if (LVL >= 3) return Tuple.Create<int, string>(0, "EXP Gained");
             var temp = LVL;
             EXP += value;
-            var diff = (LVL - temp) > 2? 2 : LVL - temp;
+            var diff = (LVL - temp) > 2 ? 2 : LVL - temp;
             while (diff-- > 0)
             {
                 CombatTracker.Instance.LogMisc($"{Name} leveled up!");

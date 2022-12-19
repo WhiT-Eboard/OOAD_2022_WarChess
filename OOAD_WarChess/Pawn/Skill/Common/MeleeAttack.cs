@@ -14,7 +14,7 @@ namespace OOAD_WarChess.Pawn.Skill.Common
             Name = "Attack";
             Damage = 10;
             MPCost = 0;
-            EffectArea = new List<(int, int)> {(0, 0)};
+            Type = SkillType.SingleEnemy;
             DamageType = DamageType.Physical;
         }
 

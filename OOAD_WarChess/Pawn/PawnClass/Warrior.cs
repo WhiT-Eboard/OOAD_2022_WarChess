@@ -1,3 +1,5 @@
+using OOAD_WarChess.Item.Equipment.Amour;
+using OOAD_WarChess.Item.Equipment.Weapon;
 using OOAD_WarChess.Pawn.Skill.Ability;
 using OOAD_WarChess.Pawn.Skill.WeaponSkill;
 
@@ -15,6 +17,8 @@ namespace OOAD_WarChess.Pawn.PawnClass
             SkillSet.Add(new Maim(pawn));
             SkillSet.Add(new InnerBeast(pawn));
             SkillSet.Add(new PrimalRend(pawn));
+            Weapon = new Sword();
+            Armor = new SampleArmor();
         }
     }
 }

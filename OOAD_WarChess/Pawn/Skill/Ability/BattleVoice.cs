@@ -16,8 +16,9 @@ namespace OOAD_WarChess.Pawn.Skill.Ability
             APCost = 2;
             MPCost = 0;
             DamageType = DamageType.Pure;
+            Type = SkillType.PlayerArea;
             Damage = 0;
-            EffectArea = new List<(int, int)> {(0, 0), (0, 1), (0, -1), (1, 0), (-1, 0)};
+            EffectArea = Tuple.Create(3, 3);
             Name = "Battle Voice";
             Effects = new List<IModifier> {new AlwaysCritic(1, initiator, 1)};
         }

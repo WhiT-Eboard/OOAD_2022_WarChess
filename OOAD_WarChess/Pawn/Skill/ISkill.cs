@@ -23,17 +23,15 @@ namespace OOAD_WarChess.Pawn.Skill
 
         public int MPCost { get; set; }
         public List<IModifier> Effects { get; set; }
-        public List<(int, int)> EffectArea { get; set; }
+        public Tuple<int,int> EffectArea { get; set; }
     }
 
     public enum SkillType
     {
-        Attack,
-        MeleeAttack,
-        RangeAttack,
-        Magic,
-        CombatSkill,
-        Heal
+        SinglePlayer,
+        SingleEnemy,
+        PlayerArea,
+        EnemyArea,
     }
 
     public enum SkillEffectType

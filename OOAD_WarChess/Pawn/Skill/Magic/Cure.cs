@@ -17,8 +17,8 @@ namespace OOAD_WarChess.Pawn.Skill.Magic
             APCost = 3;
             MPCost = 30;
             DamageType = DamageType.Pure;
+            Type = SkillType.SinglePlayer;
             Damage = 0;
-            EffectArea = new List<(int, int)> {(0, 0)};
             Name = "Cure";
             Effects = new List<IModifier> {new Heal(50, initiator, 1)};
         }

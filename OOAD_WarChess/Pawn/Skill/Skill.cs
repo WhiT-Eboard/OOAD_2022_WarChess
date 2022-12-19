@@ -23,11 +23,12 @@ namespace OOAD_WarChess.Pawn.Skill
         public int APCost { get; set; }
         public int MPCost { get; set; }
         public List<IModifier> Effects { get; set; } = new();
-        public List<(int, int)> EffectArea { get; set; } = new();
+        public Tuple<int,int> EffectArea { get; set; }
 
 
         public Skill(Pawn initiator)
         {
+            EffectArea = Tuple.Create(0, 0);
             Initiator = initiator;
             //FullDescription = () =>
             //  string.Format(Lang.Text["Skill_Full_Description"], Description(),, Range, CastTime, Cooldown);

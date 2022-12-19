@@ -4,8 +4,7 @@ using OOAD_WarChess.Battle;
 
 namespace OOAD_WarChess.Pawn.Skill.WeaponSkill
 {
-
-    public class ApexArrow:Skill
+    public class ApexArrow : Skill
     {
         public ApexArrow(Pawn initiator) : base(initiator)
         {
@@ -16,7 +15,8 @@ namespace OOAD_WarChess.Pawn.Skill.WeaponSkill
             MPCost = 0;
             DamageType = DamageType.Physical;
             Damage = 12;
-            EffectArea = new List<(int, int)> {(0, 0), (0, 1), (0, -1), (1, 0), (-1, 0)};
+            EffectArea = Tuple.Create<int, int>(3, 3);
+            Type = SkillType.EnemyArea;
             Name = "Apex Arrow";
         }
 

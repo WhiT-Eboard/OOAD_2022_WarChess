@@ -17,8 +17,8 @@ namespace OOAD_WarChess.Pawn.Skill.Ability
                 APCost = 2;
                 MPCost = 0;
                 DamageType = DamageType.Pure;
+                Type = SkillType.SinglePlayer;
                 Damage = 0;
-                EffectArea = new List<(int, int)> {(0, 0)};
                 Name = "InnerBeast";
                 Effects = new List<IModifier> {new AttackBuff(2, initiator, 1)};
             }

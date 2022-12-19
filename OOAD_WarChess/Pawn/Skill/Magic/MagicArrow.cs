@@ -13,8 +13,8 @@ namespace OOAD_WarChess.Pawn.Skill.Magic
             Damage = 10;
             MPCost = 10;
             Range = 3;
-            EffectArea = new List<(int, int)> {(0, 0)};
             DamageType = DamageType.Arcane;
+            Type = SkillType.SingleEnemy;
         }
 
         public override Tuple<int, string> Cast(Pawn initiator, Pawn receiver,out string log)
