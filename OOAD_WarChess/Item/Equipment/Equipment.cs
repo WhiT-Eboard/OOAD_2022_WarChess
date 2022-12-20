@@ -10,7 +10,17 @@ namespace OOAD_WarChess.Item.Equipment
         public int PHY_DEF { get; set; }
         public int MAG_ATK { get; set; }
         public int MAG_DEF { get; set; }
-        
+
+        public static readonly IEquipment DefaultEquipment = new Equipment()
+        {
+            Name = "Default",
+            LVL = 1,
+            PHY_ATK = 0,
+            PHY_DEF = 0,
+            MAG_ATK = 0,
+            MAG_DEF = 0
+        };
+
         public void Upgrade()
         {
             LVL++;
@@ -19,8 +29,10 @@ namespace OOAD_WarChess.Item.Equipment
             MAG_ATK += 10;
             MAG_DEF += 10;
         }
-        
-        public Equipment(){}
+
+        public Equipment()
+        {
+        }
 
         public Equipment(int phyatk, int phydef, int magatk, int magdef)
         {

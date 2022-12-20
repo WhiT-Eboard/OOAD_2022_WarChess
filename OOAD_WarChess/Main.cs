@@ -25,8 +25,7 @@ demo.ActOneTurn(
     (() =>
     {
         p1.GainExp(10000, out _);
-        p1.Skills.Find(x => x is Manaward).Cast(p1, p1);
-        p1.Skills.Find(x => x is MagicArrow).Cast(p1, p2);
+        p1.Skills.Find(x => x is Move).Cast(p1, 2);
     })
 );
 demo.ActOneTurn(

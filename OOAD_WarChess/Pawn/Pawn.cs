@@ -93,8 +93,8 @@ namespace OOAD_WarChess.Pawn
             EXP = 0;
             Id = Guid.NewGuid().GetHashCode();
             Class = PawnClass.PawnClass.Temp;
-            Weapon = null;
-            Armor = null;
+            Weapon = Equipment.DefaultEquipment;
+            Armor = Equipment.DefaultEquipment;
         }
 
         public Pawn(int str, int dex, int intel, int con, string name)
@@ -110,8 +110,8 @@ namespace OOAD_WarChess.Pawn
             EXP = 0;
             Id = Guid.NewGuid().GetHashCode();
             Class = PawnClass.PawnClass.Temp;
-            Weapon = null;
-            Armor = null;
+            Weapon = Equipment.DefaultEquipment;
+            Armor = Equipment.DefaultEquipment;
         }
 
         public int Id { get; set; }
