@@ -198,15 +198,7 @@ namespace OOAD_WarChess.Pawn
         public int SHIELD => GetModifiedAttribute(PawnAttribute.SHIELD);
         public int MAX_BURDEN => GetModifiedAttribute(PawnAttribute.MAX_BURDEN);
 
-        public static bool operator ==(Pawn left, Pawn right)
-        {
-            return left.Id == right.Id;
-        }
-
-        public static bool operator !=(Pawn left, Pawn right)
-        {
-            return left.Id != right.Id;
-        }
+        
     }
 
     public enum PawnAttribute

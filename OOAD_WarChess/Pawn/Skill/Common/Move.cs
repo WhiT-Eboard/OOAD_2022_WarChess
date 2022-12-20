@@ -17,8 +17,10 @@ namespace OOAD_WarChess.Pawn.Skill.Common
             APCost = value;
             var temp = SettleAction.Instance.SettleSkill(this, initiator, initiator);
             APCost = 1;
+            CombatTracker.Instance.GetNewLog();
             return temp;
         }
+        
     }
 }
 

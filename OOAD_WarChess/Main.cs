@@ -16,8 +16,11 @@ CombatTracker.IsDebug = true;
 var demo = new Demo();
 var p1 = PawnClass.Create("A", PawnClassType.Mage);
 var p2 = PawnClass.Create("B", PawnClassType.Warrior);
+var p3 = new Pawn(10, 10, 10, 10, "C");
+p3.Skills.Add( new Move(p3));
 demo.Mount(p1);
 demo.Mount(p2);
+demo.Mount(p3);
 var healPotion = new HealPotion(50);
 p1.Items.Add(healPotion);
 demo.ListPawnDetail();
@@ -25,7 +28,7 @@ demo.ActOneTurn(
     (() =>
     {
         p1.GainExp(10000, out _);
-        p1.Skills.Find(x => x is Move).Cast(p1, 2);
+        p3.Skills[0].Cast(p3, 2);
     })
 );
 demo.ActOneTurn(
