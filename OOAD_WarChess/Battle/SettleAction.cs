@@ -62,7 +62,7 @@ namespace OOAD_WarChess.Battle
                 SettleModifier(initiator, deplete, skill.Name);
             }
 
-            var result = Tuple.Create(realDamage, skill.Name + (damageModifier > 0 ? "Critical!!" : ""));
+            var result = Tuple.Create(realDamage, skill.Name + (damageModifier > 0 ? " Critical!!" : ""));
             if (damageModifier > 1 && realDamage > 0)
             {
                 _combatTracker.LogMisc("Critical!!");
