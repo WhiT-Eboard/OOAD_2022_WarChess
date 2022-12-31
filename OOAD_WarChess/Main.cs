@@ -29,11 +29,9 @@ demo.ListPawnDetail();
 demo.ActOneTurn(
     (() =>
     {
-        p1.GainExp(10000, out log);
-        p2.GainExp(10000, out log);
-        p1.Skills[3].Cast(p1,p1);
+        p1.Skills[1].Cast(p1,p2);
 
-        p2.Skills[4].Cast(p2, p1);
+        p2.Skills[1].Cast(p2, p1);
     })
 );
 demo.ActOneTurn(

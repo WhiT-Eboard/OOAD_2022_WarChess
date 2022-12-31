@@ -8,7 +8,7 @@ namespace OOAD_WarChess.Pawn.Skill.Magic
     {
         public CircleOfScorn(Pawn initiator) : base(initiator)
         {
-            Range = 0;
+            Range = 4;
             Cooldown = 1;
             CastTime = 0;
             APCost = 4;
