@@ -12,9 +12,9 @@ using OOAD_WarChess.Pawn.Skill.Common;
 using OOAD_WarChess.Pawn.Skill.Magic;
 
 Lang.Text.Language = Language.SimplifiedChinese;
-CombatTracker.IsDebug = false;
+CombatTracker.IsDebug = true;
 var demo = new Demo();
-var p1 = PawnClass.Create("A", PawnClassType.Mage);
+var p1 = PawnClass.Create("A", PawnClassType.Knight);
 var p2 = PawnClass.Create("B", PawnClassType.Warrior);
 var p3 = new Pawn(10, 10, 10, 10, "C");
 p3.Skills.Add(new Move(p3));
@@ -26,15 +26,16 @@ Console.WriteLine(p1);
 var log = "";
 p1.Items.Add(healPotion);
 demo.ListPawnDetail();
-Console.WriteLine(p1.LVL);
 demo.ActOneTurn(
     (() =>
     {
-        p1.GainExp(1000, out log);
-        p3.Skills[0].Cast(p3, 2);
+        p1.GainExp(10000, out log);
+        p2.GainExp(10000, out log);
+        p1.Skills[3].Cast(p1,p1);
+
+        p2.Skills[4].Cast(p2, p1);
     })
 );
-Console.WriteLine(p1.LVL);
 demo.ActOneTurn(
     (() => { p1.Items[0].Cast(p1, p2); })
 );

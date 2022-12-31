@@ -8,7 +8,7 @@ namespace OOAD_WarChess.Pawn.Modifier.Buff
         {
             Duration = value;
             Name = "Defence Increase";
-            Apply = x => (int) (1.3 * x);
+            Apply = x => (int) (4 * x);
             Target = PawnAttribute.PHY_DEF;
             Type = ModifierType.Temporary;
         }

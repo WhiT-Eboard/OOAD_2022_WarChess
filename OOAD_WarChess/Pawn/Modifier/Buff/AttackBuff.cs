@@ -6,7 +6,7 @@ public class AttackBuff:Modifier
     {
         Duration = value;
         Name = "Attack Increase";
-        Apply = x => (int) (1.3 * x);
+        Apply = x => (int) (1.5 * x);
         Target = PawnAttribute.PHY_ATK;
         Type = ModifierType.Temporary;
     }

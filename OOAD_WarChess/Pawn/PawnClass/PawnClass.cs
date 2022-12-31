@@ -41,6 +41,7 @@ namespace OOAD_WarChess.Pawn.PawnClass
                 PawnClassType.Archer => new Archer(pawn),
                 PawnClassType.Mage => new Mage(pawn),
                 PawnClassType.Priest => new Priest(pawn),
+                PawnClassType.Knight => new Knight(pawn),
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
             pawn.Init(pawnClass);
@@ -54,5 +55,6 @@ namespace OOAD_WarChess.Pawn.PawnClass
         Archer,
         Mage,
         Priest,
+        Knight
     }
 }
