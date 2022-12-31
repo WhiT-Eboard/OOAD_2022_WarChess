@@ -17,7 +17,7 @@ namespace OOAD_WarChess.Pawn.PawnClass
             SkillSet.Add(new Maim(pawn));
             SkillSet.Add(new InnerBeast(pawn));
             SkillSet.Add(new PrimalRend(pawn));
-            Weapon = new Sword();
+            Weapon = new GreatBlade();
             Armor = new SampleArmor();
         }
     }
