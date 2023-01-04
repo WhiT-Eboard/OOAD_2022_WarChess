@@ -24,10 +24,10 @@ namespace OOAD_WarChess.Item.Equipment
         public void Upgrade()
         {
             LVL++;
-            PHY_ATK += 10;
-            PHY_DEF += 10;
-            MAG_ATK += 10;
-            MAG_DEF += 10;
+            PHY_ATK = (int) (PHY_ATK * 1.2);
+            PHY_DEF = (int) (PHY_DEF * 1.2);
+            MAG_ATK = (int) (MAG_ATK * 1.2);
+            MAG_DEF = (int) (MAG_DEF * 1.2);
         }
 
         public Equipment()

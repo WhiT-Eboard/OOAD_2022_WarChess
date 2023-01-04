@@ -19,7 +19,7 @@ namespace OOAD_WarChess.Battle
 
         public static int DealPhysicalDamage(Pawn.Pawn pawn, int damage)
         {
-            return damage / 5 * pawn.PHY_ATK * pawn.Weapon.PHY_ATK / 10;
+            return damage / 5 * pawn.PHY_ATK *( pawn.Weapon.PHY_ATK>0?pawn.PHY_ATK:10) / 10;
         }
 
         public static int DealTureDamage(Pawn.Pawn pawn, int damage)
@@ -29,7 +29,7 @@ namespace OOAD_WarChess.Battle
 
         public static int DealMagicalDamage(Pawn.Pawn pawn, int damage)
         {
-            return damage / 5 * pawn.MAG_ATK * pawn.Weapon.MAG_ATK / 10;
+            return damage / 5 * pawn.MAG_ATK * (pawn.Weapon.MAG_ATK>0?pawn.MAG_ATK:10 / 10);
         }
 
         public static int DefendPhysicalDamage(Pawn.Pawn pawn, int damage)

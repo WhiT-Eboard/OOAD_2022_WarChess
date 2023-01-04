@@ -42,6 +42,14 @@ namespace OOAD_WarChess.Battle
                     {
                         SettleModifier(target,
                             new Heal(target.GetAttribute(PawnAttribute.HP) - target.HP, initiator, 0), skill.Name);
+                        CombatTracker.Instance.LogHeal(initiator.Name, target.Name, skill.Name,
+                            Tuple.Create(target.GetAttribute(PawnAttribute.HP) - target.HP, "Heal"));
+                    }
+                    else
+                    {
+                        SettleModifier(target, modifier, skill.Name);
+                        CombatTracker.Instance.LogHeal(initiator.Name, target.Name, skill.Name,
+                            Tuple.Create<int, string>(modifier.Apply(0), "Heal"));
                     }
                 }
                 else
@@ -68,7 +76,14 @@ namespace OOAD_WarChess.Battle
                 _combatTracker.LogMisc("Critical!!");
             }
 
-            _combatTracker.LogSkill(initiator.Name, target.Name, skill.Name, result);
+            if (skill.Damage == 0)
+            {
+                _combatTracker.LogSkillNoDamage(initiator.Name, target.Name, skill.Name, result);
+            }
+            else
+            {
+                _combatTracker.LogSkill(initiator.Name, target.Name, skill.Name, result);
+            }
             return result;
         }
 

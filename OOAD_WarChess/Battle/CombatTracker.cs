@@ -26,9 +26,12 @@ namespace OOAD_WarChess.Battle
                 LogType.Skill => $"[{log.Item1}] used {log.Item3} on [{log.Item2}]. Deal {log.Item4} damage.",
                 LogType.ModifierLoss => $"[{log.Item1}] lost effect {log.Item2}",
                 LogType.ModifierGain =>
-                    $"[{log.Item1}] gain effect {log.Item2} from [{log.Item3}]({log.Item5}) for {log.Item4} turn(s)",
+                    $"[{log.Item1}] gain effect {log.Item2} from [{log.Item3}]({log.Item5})" +
+                    (log.Item4 > 0 ? $"for {log.Item4} turn(s)" : ""),
                 LogType.Item => $"[{log.Item1}] used Item {log.Item3} on [{log.Item2}]",
                 LogType.Misc => $"{log.Item1}",
+                LogType.Heal => $"[{log.Item1}] used {log.Item3} on [{log.Item2}]. Heal {log.Item4}.",
+                LogType.SkillNoDamage => $"[{log.Item1}] used {log.Item3} on [{log.Item2}].",
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
@@ -48,6 +51,32 @@ namespace OOAD_WarChess.Battle
             {
                 Console.WriteLine(CombatLogToString(_combatLogList.Last()));
             }
+
+            _newLogCount++;
+            return CombatLogToString(_combatLogList.Last());
+        }
+
+        public string LogHeal(string initiator, string target, string skill, Tuple<int, string> result)
+        {
+            _combatLogList.Add(Tuple.Create(initiator, target, skill, result.Item1, result.Item2, LogType.Heal));
+            if (IsDebug)
+            {
+                Console.WriteLine(CombatLogToString(_combatLogList.Last()));
+            }
+
+            _newLogCount++;
+            return CombatLogToString(_combatLogList.Last());
+        }
+
+        public string LogSkillNoDamage(string initiator, string target, string skill, Tuple<int, string> result)
+        {
+            _combatLogList.Add(
+                Tuple.Create(initiator, target, skill, result.Item1, result.Item2, LogType.SkillNoDamage));
+            if (IsDebug)
+            {
+                Console.WriteLine(CombatLogToString(_combatLogList.Last()));
+            }
+
             _newLogCount++;
             return CombatLogToString(_combatLogList.Last());
         }
@@ -59,6 +88,7 @@ namespace OOAD_WarChess.Battle
             {
                 Console.WriteLine(CombatLogToString(_combatLogList.Last()));
             }
+
             _newLogCount++;
             return CombatLogToString(_combatLogList.Last());
         }
@@ -70,6 +100,7 @@ namespace OOAD_WarChess.Battle
             {
                 Console.WriteLine(CombatLogToString(_combatLogList.Last()));
             }
+
             _newLogCount++;
             return CombatLogToString(_combatLogList.Last());
         }
@@ -82,6 +113,7 @@ namespace OOAD_WarChess.Battle
             {
                 Console.WriteLine(CombatLogToString(_combatLogList.Last()));
             }
+
             _newLogCount++;
             return CombatLogToString(_combatLogList.Last());
         }
@@ -93,6 +125,7 @@ namespace OOAD_WarChess.Battle
             {
                 Console.WriteLine(CombatLogToString(_combatLogList.Last()));
             }
+
             _newLogCount++;
             return CombatLogToString(_combatLogList.Last());
         }
@@ -103,6 +136,7 @@ namespace OOAD_WarChess.Battle
             {
                 return "";
             }
+
             var result = "";
             for (var i = _combatLogList.Count - _newLogCount; i < _combatLogList.Count; i++)
             {
@@ -116,9 +150,11 @@ namespace OOAD_WarChess.Battle
         public enum LogType
         {
             Skill,
+            SkillNoDamage,
             Item,
             ModifierLoss,
             ModifierGain,
+            Heal,
             Misc
         }
     }
