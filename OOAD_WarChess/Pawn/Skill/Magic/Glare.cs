@@ -18,7 +18,7 @@ namespace OOAD_WarChess.Pawn.Skill.Magic
             MPCost = 10;
             DamageType = DamageType.Arcane;
             Damage = 10;
-            Type = SkillType.SinglePlayer;
+            Type = SkillType.SingleEnemy;
             Name = "Glare";
         }
 

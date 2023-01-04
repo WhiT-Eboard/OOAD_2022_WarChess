@@ -63,6 +63,8 @@ namespace OOAD_WarChess.Pawn
 
         public IEquipment Armor { get; set; }
 
+        public int Money { get; set; }
+
         public void Init(PawnClass.PawnClass pawnClass)
         {
             Class = pawnClass;
@@ -95,6 +97,7 @@ namespace OOAD_WarChess.Pawn
             Class = PawnClass.PawnClass.Temp;
             Weapon = Equipment.DefaultEquipment;
             Armor = Equipment.DefaultEquipment;
+            Money = 0;
         }
 
         public Pawn(int str, int dex, int intel, int con, string name)
@@ -112,6 +115,7 @@ namespace OOAD_WarChess.Pawn
             Class = PawnClass.PawnClass.Temp;
             Weapon = Equipment.DefaultEquipment;
             Armor = Equipment.DefaultEquipment;
+            Money = 0;
         }
 
         public int Id { get; set; }
@@ -145,6 +149,21 @@ namespace OOAD_WarChess.Pawn
 
             log = CombatTracker.Instance.GetNewLog();
             return Tuple.Create<int, string>(0, "EXP Gained");
+        }
+
+        public Tuple<int, string> GainMoney(int value, out string log)
+        {
+            CombatTracker.Instance.LogMisc($"[{Name}] gained {value} money");
+            Money += value;
+            log = CombatTracker.Instance.GetNewLog();
+            return Tuple.Create(value, "Money Gained");
+        }
+        public Tuple<int, string> LoseMoney(int value, out string log)
+        {
+            CombatTracker.Instance.LogMisc($"[{Name}] losed {value} money");
+            Money -= value;
+            log = CombatTracker.Instance.GetNewLog();
+            return Tuple.Create(value, "Money Losed");
         }
 
         public int GetAttribute(PawnAttribute attribute)
@@ -197,8 +216,6 @@ namespace OOAD_WarChess.Pawn
         public int CRIT => GetModifiedAttribute(PawnAttribute.CRIT);
         public int SHIELD => GetModifiedAttribute(PawnAttribute.SHIELD);
         public int MAX_BURDEN => GetModifiedAttribute(PawnAttribute.MAX_BURDEN);
-
-        
     }
 
     public enum PawnAttribute

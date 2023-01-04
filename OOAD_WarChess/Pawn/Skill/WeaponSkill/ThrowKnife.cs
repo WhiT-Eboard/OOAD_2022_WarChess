@@ -1,22 +1,21 @@
 using System;
 using OOAD_WarChess.Battle;
 
-namespace OOAD_WarChess.Pawn.Skill.Common
+namespace OOAD_WarChess.Pawn.Skill.WeaponSkill
 {
-    public class UseItem : Skill
+    public class ThrowKnife:Skill
     {
-        public UseItem(Pawn initiator) : base(initiator)
+        public ThrowKnife(Pawn initiator) : base(initiator)
         {
-        }
-
-        public UseItem()
-        {
+            Range = 8;
+            Cooldown = 1;
+            CastTime = 0;
             APCost = 2;
             MPCost = 0;
-            Cooldown = 1;
-            Range = 9999;
-            Name = "Item";
-            Damage = 0;
+            DamageType = DamageType.Physical;
+            Damage = 8;
+            Name = "Throw Knife";
+            Type = SkillType.SingleEnemy;
         }
 
         public override Tuple<int, string> Cast(Pawn initiator, Pawn receiver, out string log)

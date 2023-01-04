@@ -17,7 +17,6 @@ namespace OOAD_WarChess.Pawn.Skill.WeaponSkill
             MPCost = 0;
             DamageType = DamageType.Physical;
             Damage = 0;
-            EffectArea = Tuple.Create(3, 3);
             Type = SkillType.SinglePlayer;
             Name = "Sheltron";
             Effects = new List<IModifier> {new DefenceBuff(2, initiator, 0)};

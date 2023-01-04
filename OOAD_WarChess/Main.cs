@@ -3,6 +3,7 @@ using OOAD_WarChess;
 using OOAD_WarChess.Battle;
 using OOAD_WarChess.Item;
 using OOAD_WarChess.Item.Potion;
+using OOAD_WarChess.Item.Util;
 using OOAD_WarChess.Localization;
 using OOAD_WarChess.Pawn;
 using OOAD_WarChess.Pawn.Modifier.Buff;
@@ -24,14 +25,16 @@ demo.Mount(p3);
 var healPotion = new HealPotion(50);
 Console.WriteLine(p1);
 var log = "";
-p1.Items.Add(healPotion);
+p1.Items.Add(new Knife(5));
+p1.Items.Add(new Beer(10));
 demo.ListPawnDetail();
+p1.GainExp(10000, out _);
+p2.GainExp(10000, out _);
 demo.ActOneTurn(
     (() =>
     {
-        p1.Skills[1].Cast(p1,p2);
-
-        p2.Skills[1].Cast(p2, p1);
+        p1.GainMoney(100,out _);
+        p1.Items[0].Cast(p1, p2, out _);
     })
 );
 demo.ActOneTurn(
